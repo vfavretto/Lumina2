@@ -7,6 +7,8 @@ import { HeaderComponent } from './pages/header/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,15 @@ import { LoginComponent } from './pages/login/login.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatButtonModule,
+    MatMenuModule,
   ],
   providers: [
     provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }
