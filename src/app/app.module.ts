@@ -11,6 +11,8 @@ import { HeaderComponent } from './pages/header/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -24,12 +26,19 @@ import { LoginComponent } from './pages/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+<<<<<<< HEAD
+    MatButtonModule,
+    MatMenuModule,
+=======
     MatButtonModule, MatMenuModule,
     
+>>>>>>> 6680c3918b01a011602110bfdf4127ff2259239a
   ],
   providers: [
     provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+ }
