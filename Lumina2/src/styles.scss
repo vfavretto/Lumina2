@@ -210,7 +210,7 @@ h1 {
 }
 
 .homeBlog {
-    background-image: linear-gradient(180deg, rgba(38, 38, 37, 0.00) 0%, #262625 100%), url(../img/homeFundoBlog.png);
+    background-image: linear-gradient(180deg, rgba(38, 38, 37, 0.00) 0%, #262625 100%), url(./assets/img/homeFundoBlog.png);
     background-size: cover;
 }
 
@@ -347,7 +347,7 @@ h1 {
 .maisLidas {
     border-radius: 15px;
     border-radius: 15px;
-    background: url(/img/fundoBlog.png);
+    background: url(./assets/img/fundoBlog.png);
     background-size: cover;
     padding: 12% 10%;
     margin-right: 20%;
@@ -413,7 +413,7 @@ h1 {
 
 .sobreEmpresa {
     width: 100%;
-    background-image: linear-gradient(0deg, var(--fundo-1) 25%, #ffffff00 50%), url(../img/sobreEmpresa.png);
+    background-image: linear-gradient(0deg, var(--fundo-1) 25%, #ffffff00 50%), url(./assets/img/sobreEmpresa.png);
     background-position: top right 0px;
     background-repeat: no-repeat;
     background-size: auto;
@@ -450,7 +450,7 @@ h1 {
 
 .equipe {
     background-position: center;
-    background: linear-gradient(180deg, rgba(38, 38, 37, 0.00) 0%, #262625 100%), url(../img/fundoEquipe.png);
+    background: linear-gradient(180deg, rgba(38, 38, 37, 0.00) 0%, #262625 100%), url(./assets/img/fundoEquipe.png);
     background-size: cover;
 }
 
@@ -528,7 +528,7 @@ h1 {
 }
 
 .parcerias {
-    background-image: linear-gradient(0deg, var(--fundo-1) 10%, #ffffff00 50%), url(../img/parcerias.png);
+    background-image: linear-gradient(0deg, var(--fundo-1) 10%, #ffffff00 50%), url(./assets/img/parcerias.png);
     background-position: left;
     background-repeat: no-repeat;
 }
@@ -555,7 +555,7 @@ h1 {
 }
 
 .faleConosco {
-    background-image: linear-gradient(0deg, var(--fundo-1) 10%, #ffffff00 50%), url(../img/faleConosco.png);
+    background-image: linear-gradient(0deg, var(--fundo-1) 10%, #ffffff00 50%), url(./assets/img/faleConosco.png);
     background-position: right;
     background-repeat: no-repeat;
 }
@@ -708,7 +708,7 @@ h1 {
 }
 
 .empresas {
-    background-image: url(../img/parceiros/fundo.png);
+    background-image: url(./assets/img/parceiros/fundo.png);
     padding: 5%;
     background-size: cover;
 
