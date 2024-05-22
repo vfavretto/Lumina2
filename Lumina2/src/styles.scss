@@ -2,3 +2,1037 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+:root {
+    --cinzinha: #626262;
+    --branco: #FFFFFF;
+    --cor-5: #2FAC66;
+    --fundo-1: #262625;
+    --ativo: #12A19A;
+    /* --bs-body-bg: #40403F; */
+}
+
+.body {
+    background-color: var(--fundo-1);
+}
+
+.navbar {
+    flex-wrap: nowrap;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.40);
+}
+
+.navbar-brand img {
+    width: 223.636px;
+    height: 60px;
+    margin: 25px 0px 15px 2.97%;
+}
+
+.nav-link {
+    color: white;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--ativo);
+    font-weight: 700;
+}
+
+#buscar {
+    width: auto;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid var(--cinzinha);
+    color: var(--cinzinha);
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    border-radius: inherit;
+}
+
+#loginBtn {
+    width: 179px;
+    height: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 8px 39px;
+    border-radius: 15px;
+    border: none;
+    color: var(--branco);
+    box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.50);
+    background: rgb(47, 172, 102);
+    background: linear-gradient(133deg,
+            rgba(47, 172, 102, 1) 0%,
+            rgba(41, 35, 92, 1) 50%,
+            rgba(41, 35, 92, 1) 61%,
+            rgba(47, 172, 102, 1) 100%);
+    color: var(--branco);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+footer {
+    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.50);
+}
+
+.colRodape {
+    color: var(--branco)
+}
+
+.py-4 {
+    padding-bottom: 0px;
+}
+
+.mapinha {
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+.botaoGeral {
+    width: 197px;
+    height: 60px;
+    border-radius: 13px;
+    border: 1px solid var(--cor-5);
+    background: #12A19A;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.50);
+    color: var(--branco);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.carousel-indicators {
+    margin-bottom: 2.8rem;
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+    background: #129E97 !important;
+}
+
+.carousel-indicators [data-bs-target] {
+    background: none;
+    border: 1px solid var(--cor-5);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0px 14px;
+}
+
+.anteriorSlide,
+.proximoSlide {
+    z-index: 3;
+}
+
+.sombra:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    background: linear-gradient(180deg, rgba(38, 38, 37, 0.00) 0%, #262625 100%);
+    z-index: 1;
+}
+
+.imgSlide {
+    position: relative;
+}
+
+.divTexto {
+    height: 80%;
+    padding-top: 5%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+.texto {
+    margin-right: 12%;
+    margin-left: 40%;
+    position: relative;
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: end;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.saibaMais {
+    margin-right: 12%;
+}
+
+.metasTexto {
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.metasTexto i {
+    color: var(--cor-5)
+}
+
+h1 {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 2.2% 0px
+}
+
+.homeBlog {
+    background-image: linear-gradient(180deg, rgba(38, 38, 37, 0.00) 0%, #262625 100%), url(../img/homeFundoBlog.png);
+    background-size: cover;
+}
+
+.itemBlog .card {
+    margin: 0 2.5em;
+    border: none;
+    background: none;
+}
+
+.itemBlog .card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    width: 100%;
+}
+
+.itemBlog .card .card-body a {
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+}
+
+.anteriorBlog,
+.proximoBlog {
+    color: var(--branco);
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.50);
+    font-family: Poppins;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    width: 8%;
+}
+
+@media (max-width:1199px) {
+    .sidebar {
+        background-color: #2626253c;
+    }
+}
+
+@media (min-width: 1110px) {
+
+    .nossaEquipe {
+        padding: 0 8% 3% 8%;
+    }
+
+    .nossaEquipe .sobreNos {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .nossaEquipe .membro {
+        width: 16.6667%
+    }
+
+    .nossaEquipe h3,
+    .nossaEquipe p {
+        margin: 0 10px
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .carouselBlog {
+        display: flex;
+        box-sizing: border-box;
+        padding: 1em 110px 1em 166px;
+    }
+
+    .itemBlog {
+        margin-right: 0;
+        flex: 0 0 33.333333%;
+        display: flex !important;
+    }
+
+    .itemBlog .card {
+        display: flex;
+        align-items: center;
+    }
+
+    .itemBlog .card .img-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imgBlog {
+        width: 100%;
+    }
+
+    .sobreTexto {
+        padding: 8% 50% 8% 5%;
+    }
+
+    .missaoVisaoValores {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0 6rem;
+    }
+
+    .missaoVisaoValores .itens {
+        width: 25%
+    }
+
+    .textoParcerias {
+        padding: 2% 8% 10% 50%;
+    }
+
+    .faleConosco .form {
+        padding: 2% 50% 3% 8%;
+    }
+}
+
+.blog {
+    margin-bottom: 3%;
+}
+
+.maisLidaTop {
+    margin-top: 20%;
+}
+
+.maisLidas {
+    border-radius: 15px;
+    border-radius: 15px;
+    background: url(/img/fundoBlog.png);
+    background-size: cover;
+    padding: 12% 10%;
+    margin-right: 20%;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.40);
+    ;
+}
+
+.maisLidas h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 10%;
+}
+
+.maisLidas li {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 65px;
+}
+
+.maisLidas li::marker {
+    color: var(--cor-5);
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.blog img {
+    margin-right: 16px;
+}
+
+.textoBlog h2 {
+    color: #12A19A;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-top: 16px;
+}
+
+.textoBlog p {
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-top: 16px;
+}
+
+.sobreEmpresa {
+    width: 100%;
+    background-image: linear-gradient(0deg, var(--fundo-1) 25%, #ffffff00 50%), url(../img/sobreEmpresa.png);
+    background-position: top right 0px;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.sobreTexto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(90deg, var(--fundo-1) 50%, #ffffff00 100%);
+}
+
+.sobreTexto h2 {
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 5%;
+}
+
+.sobreTexto p {
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5%;
+}
+
+.equipe {
+    background-position: center;
+    background: linear-gradient(180deg, rgba(38, 38, 37, 0.00) 0%, #262625 100%), url(../img/fundoEquipe.png);
+    background-size: cover;
+}
+
+.equipe h2 {
+    z-index: 2;
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+
+.equipe h3 {
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.equipe p {
+    color: var(--cinzinha);
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.nossaEquipe .sobreNos {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.nossaEquipe .membro {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.nossaEquipe h3,
+.nossaEquipe p {
+    margin: 0 10px
+}
+
+
+.missaoVisaoValores {
+    margin-top: 3rem;
+}
+
+.missaoVisaoValores h2 {
+    color: var(--ativo);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.missaoVisaoValores p,
+.missaoVisaoValores li {
+    color: var(--branco);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.parcerias {
+    background-image: linear-gradient(0deg, var(--fundo-1) 10%, #ffffff00 50%), url(../img/parcerias.png);
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+.parcerias .textoParcerias h2 {
+    color: var(--branco);
+    text-align: right;
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.parcerias .textoParcerias p {
+    color: var(--branco);
+    text-align: right;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 15px;
+}
+
+.faleConosco {
+    background-image: linear-gradient(0deg, var(--fundo-1) 10%, #ffffff00 50%), url(../img/faleConosco.png);
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.faleConosco .formSobre {
+    padding: 15px;
+}
+
+.faleConosco h2 {
+    color: var(--branco);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.faleConosco input,
+.faleConosco textarea {
+    border: none;
+    background-color: #40403F;
+    border-radius: 15px;
+}
+
+.faleConosco label {
+    color: var(--cinzinha, #626262) !important;
+    font-family: Poppins;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    padding: 1rem 1.75rem 0.25rem 1.75rem;
+    transform-origin: 50% 50%;
+    height: initial;
+}
+
+.formSobre .form-control {
+    color: rgb(165, 165, 165);
+}
+
+.textoParceiros h2 {
+    color: #12A19A;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.textoParceiros p {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.textoParceiros button {
+    border-radius: 15px;
+    background: #129E97;
+    padding: 10px 15px;
+    border: none;
+    width: 60%;
+}
+
+#buscarEmpresa {
+    width: auto;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid var(--cinzinha);
+    color: var(--cinzinha);
+    font-family: Poppins;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    border-radius: inherit;
+}
+
+.paginaParceiros {
+    padding: 0 8%;
+}
+
+.paginaParceiros .buscarEmpresa {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2%;
+}
+
+.botoesParceiros button {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: #129E97;
+    border: none;
+    width: 87.619px;
+    height: 80px;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 0 25px;
+
+}
+
+.botoesPrincipais {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5% 0 3% 0;
+}
+
+.botoesPrincipais button {
+    background-color: var(--cinzinha);
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    padding: 7% 50%;
+    border-radius: 65px;
+    border: none;
+
+}
+
+.botoesPrincipais .ativo {
+    background: rgb(47, 172, 102);
+    background: linear-gradient(40deg, rgba(47, 172, 102, 1) 0%, rgba(43, 75, 95, 1) 25%, rgba(41, 43, 93, 1) 36%, rgba(41, 35, 92, 1) 65%, rgba(42, 55, 93, 1) 73%, rgba(47, 172, 102, 1) 100%);
+}
+
+.botoesParceiros i {
+    color: #FFF;
+    font-family: Font Awesome 6 Free;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-transform: capitalize;
+}
+
+.botoesParceiros {
+    width: 100%;
+    justify-content: flex-end;
+
+}
+
+.empresas {
+    background-image: url(../img/parceiros/fundo.png);
+    padding: 5%;
+    background-size: cover;
+
+}
+
+.imgParceiros {
+    padding: 0% 2% 1% 0%;
+}
+
+.trabalheConosco {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5%;
+
+}
+
+.trabalheConosco h2 {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-right: 2%;
+}
+
+.itemParceiros {
+    margin-bottom: 2%;
+}
+
+.arrumarBotoes {
+    display: flex;
+    background-color: var(--cinzinha);
+    border-radius: 100px;
+    justify-content: center;
+}
+
+.perfilFoto {
+    border-radius: 50%;
+    width: 85%;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.40);
+    margin: 10%;
+}
+
+.perfilNome {
+    color: var(--branco, #FFF);
+    font-family: Poppins;
+    font-size: 250%;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+.perfilCargo {
+
+    color: var(--branco, #FFF);
+    font-family: Poppins;
+    font-size: 170%;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+
+}
+
+.perfilEmpresa {
+    color: #2FAC66;
+    font-family: Poppins;
+    font-size: 110%;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+
+#perfil h5 {
+    margin-left: 10%;
+}
+
+#perfil p {
+    color: #FFFFFF;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    font-family: Poppins;
+    font-size: medium;
+    font-weight: 100;
+    text-align: justify;
+    line-height: 155%;
+
+}
+
+.perfilMensagens {
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.40);
+
+}
+
+.perfilMsgimg {
+    width: 100%;
+}
+
+div .formsCadastro form {
+    border: 2px solid;
+    width: 100%;
+    padding-bottom: 30%;
+    border-radius: 10px;
+    background-color: var(--fundo-1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 43px;
+
+}
+
+.textCadastro h3 {
+    justify-content: center;
+    margin-top: 71px;
+    height: 41px;
+    margin-bottom: 120px;
+}
+
+.bemVindo h2 {
+    justify-content: center;
+    margin-top: 100px;
+    height: 41px;
+    margin-bottom: 120px;
+}
+
+.formularioCadastro .col-form-label {
+    margin-bottom: 38px;
+}
+
+/* div .container-fluid{ */
+div .divMae {
+    /* width: 1558px;
+    height: 820px; */
+    flex-shrink: 0;
+    border-radius: 10px;
+    margin-top: 5%;
+
+}
+
+div .bemVindo .btnLogin {
+    margin-bottom: 45px;
+}
+
+.risquinho {
+    border: 0;
+    height: 2px;
+    background: #A0BB9C;
+    /* opacity: 1; */
+}
+
+div .or {
+    font-size: 28px;
+    text-align: center;
+}
+
+div .welcome path {
+    margin-right: 20px;
+    width: 33px;
+    height: 39px;
+    flex-shrink: 0;
+}
+
+div .welcome svg path {
+    margin-right: 15px;
+}
+
+.fundinRegistro {
+    background-color: #111113e5;
+    border-radius: 10px;
+    margin-left: 8%;
+    margin-right: 8%;
+
+}
+
+.zikaMargem {
+    margin-right: 3%;
+}
+
+.imagemBaixo {
+    margin-bottom: 0%;
+    padding: 0px;
+}
+
+.baixoImg {
+    width: 100%;
+    border-radius: 0px 0px 10px 10px;
+    margin-top: 2%;
+}
+
+
+.perfilFoto {
+    border-radius: 50%;
+    width: 85%;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.40);
+    margin: 10%;
+}
+
+.perfilNome {
+    color: var(--branco, #FFF);
+    font-family: Poppins;
+    font-size: 250%;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+.perfilCargo {
+
+    color: var(--branco, #FFF);
+    font-family: Poppins;
+    font-size: 170%;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+
+}
+
+.perfilEmpresa {
+    color: #2FAC66;
+    font-family: Poppins;
+    font-size: 110%;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+
+
+#perfil h5 {
+    margin-left: 10%;
+}
+
+#perfil p {
+    color: #FFFFFF;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    font-family: Poppins;
+    font-size: medium;
+    font-weight: 100;
+    text-align: justify;
+    line-height: 155%;
+
+}
+
+.perfilMensagens {
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.40);
+
+}
+
+.perfilMsgimg {
+    width: 100%;
+}
+
+
+#perfilMsg h1 {
+    text-align: left;
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 200%;
+    margin-left: 15%;
+
+}
+
+#sininhoPerfil {
+    color: var(--branco);
+    font-size: 180%;
+
+
+}
+
+#perfilFoto img {
+    width: 100px;
+    border-radius: 50%;
+    margin: 0px 50px;
+}
+
+#perfilFoto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nomepessoa p {
+    margin-top: 1%;
+    font-size: small;
+    text-align: left;
+    margin-bottom: 0%;
+}
+
+#bolinha {
+    color: #129E97;
+    margin: 0% 8%;
+}
+
+#nomepessoa h2 {
+    color: #12A19A;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#perfilFotinha {
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 4%;
+}
+
+#perfilMsg div {
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-right: 8%;
+    margin-bottom: 2%;
+}
+
+.rodape i {
+    color: var(--cor-5);
+    font-size: 24px;
+    font-style: normal;
+    line-height: 45px;
+}
