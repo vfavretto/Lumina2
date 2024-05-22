@@ -1,2 +1,122 @@
-<p>header works!</p>
-
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+    defer
+  ></script>
+  <!-- <link rel="stylesheet" href="../style/styletest.css" /> -->
+  <script
+    src="https://kit.fontawesome.com/0a65cbded2.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<div class="body overflow-hidden">
+  <header>
+    <nav class="navbar navbar-expand-xl">
+      <div class="container-fluid">
+        <!-- se tirar o fluid fica quicandinho -->
+        <div class="container">
+          <a href="" class="navbar-brand fs-4">
+            <img src="../../assets/img/whiteLogo.png" alt="Lumina Logo" />
+          </a>
+        </div>
+        <button
+          class="navbar-toggler shadow-none border-1"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="sidebar offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div class="offcanvas-header justify-content-center">
+            <div class="offcanvas-title" id="offcanvasNavbarLabel">
+              <img src="" alt="" />
+            </div>
+            <!-- <div class="">
+                      <button class="btn-close btn-close-white" type="button" data-bs-dismiss="offcanvas"
+                          aria-label="Close"></button>
+                      </div>  é o xiszinho-->
+          </div>
+          <div class="offcanvas-body d-flex flex-column flex-xl-row p-4">
+            <ul class="navbar-nav">
+              <li class="nav-item mx-2">
+                <a href="" class="nav-link" aria-current="page">Home</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a href="" class="nav-link">Sobre</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a href="" class="nav-link">Parceiros</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a href="" class="nav-link">Blog</a>
+              </li>
+              <form class="d-flex justify-content-center" role="search">
+                <input
+                  type="search"
+                  size="10"
+                  placeholder="Buscar..."
+                  id="buscar"
+                  name="buscar"
+                  aria-label="Search"
+                />
+                <label for="buscar" type="submit"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="45"
+                    height="45"
+                    viewBox="0 0 45 45"
+                    fill="none"
+                  >
+                    <g clip-path="url(#clip0_8_9)">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M30.0503 31.7597C26.8611 34.5503 22.6872 36.2416 18.1208 36.2416C8.11208 36.2416 0 28.1295 0 18.1208C0 8.11208 8.11208 0 18.1208 0C28.1295 0 36.2416 8.11208 36.2416 18.1208C36.2416 22.6872 34.5503 26.8671 31.7597 30.0503L44.6436 42.9342C45.1148 43.4054 45.1148 44.1725 44.6436 44.6436C44.1725 45.1148 43.4054 45.1148 42.9342 44.6436L30.0503 31.7597ZM33.8255 18.1208C33.8255 26.7946 26.7946 33.8255 18.1208 33.8255C9.44698 33.8255 2.41611 26.7946 2.41611 18.1208C2.41611 9.44698 9.44698 2.41611 18.1208 2.41611C26.7946 2.41611 33.8255 9.44698 33.8255 18.1208Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_8_9">
+                        <rect width="45" height="45" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </label>
+              </form>
+            </ul>
+            <div class="d-flex justify-content-center align-items-center gap-3">
+              <a href="#login" class="text-white"
+                ><input type="button" value="Login" id="loginBtn"
+              /></a>
+              <a href="./registro.html"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+</div>
