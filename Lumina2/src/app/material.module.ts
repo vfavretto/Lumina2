@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { BlogComponent } from './blog/blog.component';
 
 
 
@@ -11,9 +12,10 @@ import { FooterComponent } from './footer/footer.component';
 @NgModule({
     imports: [ FormsModule, RouterLink,
             ReactiveFormsModule, HomeComponent,
-            HeaderComponent, FooterComponent
+            HeaderComponent, FooterComponent, BlogComponent
             ],
-    exports: [ FormsModule, RouterLink, HeaderComponent, HomeComponent, FooterComponent
+    exports: [ FormsModule, RouterLink, HeaderComponent, HomeComponent, FooterComponent,
+                BlogComponent
             ], 
 })
 
