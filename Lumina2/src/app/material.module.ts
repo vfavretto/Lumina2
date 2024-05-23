@@ -6,6 +6,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BlogComponent } from './blog/blog.component';
 import { ParceirosComponent } from './parceiros/parceiros.component';
+import { LoginComponent } from './login/login.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 
@@ -13,10 +15,11 @@ import { ParceirosComponent } from './parceiros/parceiros.component';
 @NgModule({
     imports: [ FormsModule, RouterLink,
             ReactiveFormsModule, HomeComponent,
-            HeaderComponent, FooterComponent, BlogComponent, ParceirosComponent
+            HeaderComponent, FooterComponent, BlogComponent, 
+            ParceirosComponent, LoginComponent, PerfilComponent
             ],
     exports: [ FormsModule, RouterLink, HeaderComponent, HomeComponent, FooterComponent,
-                BlogComponent, ParceirosComponent
+                BlogComponent, ParceirosComponent, LoginComponent, PerfilComponent
             ], 
 })
 
