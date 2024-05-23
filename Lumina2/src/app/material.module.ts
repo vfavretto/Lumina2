@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BlogComponent } from './blog/blog.component';
+import { ParceirosComponent } from './parceiros/parceiros.component';
 
 
 
@@ -12,10 +13,10 @@ import { BlogComponent } from './blog/blog.component';
 @NgModule({
     imports: [ FormsModule, RouterLink,
             ReactiveFormsModule, HomeComponent,
-            HeaderComponent, FooterComponent, BlogComponent
+            HeaderComponent, FooterComponent, BlogComponent, ParceirosComponent
             ],
     exports: [ FormsModule, RouterLink, HeaderComponent, HomeComponent, FooterComponent,
-                BlogComponent
+                BlogComponent, ParceirosComponent
             ], 
 })
 
