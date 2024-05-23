@@ -13,7 +13,7 @@ import { FooterComponent } from './footer/footer.component';
             ReactiveFormsModule, HomeComponent,
             HeaderComponent, FooterComponent
             ],
-    exports: [ FormsModule, RouterLink, HeaderComponent, HomeComponent
+    exports: [ FormsModule, RouterLink, HeaderComponent, HomeComponent, FooterComponent
             ], 
 })
 
