@@ -1,1 +1,28 @@
-@import '../../styles.scss';
+:root {
+    --cinzinha: #626262;
+    --branco: #FFFFFF;
+    --cor-5: #2FAC66;
+    --fundo-1: #262625;
+    --ativo: #12A19A;
+    /* --bs-body-bg: #40403F; */
+}
+
+
+.footer {
+    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.50);
+    background-color: var(--fundo-1);
+}
+
+
+.colRodape {
+    color: var(--branco)
+}
+
+.py-4 {
+    padding-bottom: 0px;
+}
+
+.mapinha {
+    margin-top: 20px;
+    border-radius: 15px;
+}
