@@ -40,3 +40,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/Java/JavaApplication1/nbproject/private/
+/Java/AdmLumina/nbproject/private/
