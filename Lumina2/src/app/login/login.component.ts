@@ -4,6 +4,8 @@ import { RouterOutlet, Routes } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import {GlobalService} from '../global.service'; 
 
 @Component({
   selector: 'app-login',
@@ -12,20 +14,39 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
+@Injectable({  providedIn: 'root' })
+
 export class LoginComponent implements OnInit {
 
-  username: string = '';
-  password: string = '';
+  constructor(private authService:LoginService,
+   private globalService: GlobalService,
+    
+  ) {  }
 
-  constructor(private LoginService: LoginService, private router: Router) {}
+  public descricaoLogin !: string
 
-  ngOnInit(): void { }
-
-  login(): void {
-    if (this.LoginService.login(this.username, this.password)) {
-      this.router.navigate(['/perfil']);
+  ngOnInit(): void {
+    if (this.authService.statusLogin()) {
+     
+      this.descricaoLogin = "Estou Autorizado" ;
     } else {
-      // Exibir mensagem de erro de login
+    
+      this.descricaoLogin = "Não Autorizado";
     }
+
+    console.log(this.descricaoLogin);
+}
+clickLogin(){
+  if (this.authService.statusLogin()) {
+    this.authService.deslogar();
+    this.descricaoLogin = "Não Autorizado";
+    this.globalService.setLoginRead(false); // Atualizando o valor de loginread
+  }else{
+    this.authService.autorizar();
+    this.descricaoLogin = "Autorizado";
+    this.globalService.setLoginRead(true); // Atualizando o valor de loginread
   }
+};
+  
 }
