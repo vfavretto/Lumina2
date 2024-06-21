@@ -6,6 +6,9 @@ import { BlogComponent } from './blog/blog.component';
 import { ParceirosComponent } from './parceiros/parceiros.component';
 import { SobreComponent } from './sobre/sobre.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
      { path: '', component: HomeComponent },
@@ -14,7 +17,11 @@ export const routes: Routes = [
      {path: 'blog', component: BlogComponent},
      {path: 'parceiros', component: ParceirosComponent},
      {path: 'sobre', component: SobreComponent},
-     {path: 'perfil', component: PerfilComponent},
-
+     {path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
      { path: '**', component: HomeComponent },
 ];
+@NgModule({
+     imports: [RouterModule.forRoot(routes)],
+     exports: [RouterModule]
+   })
+   export class AppRoutingModule { }

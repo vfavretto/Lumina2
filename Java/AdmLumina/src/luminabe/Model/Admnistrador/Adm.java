@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package luminabe.Model.Admnistrador;
 
-/**
- *
- * @author victor
- */
 public class Adm {
 
     //Atributos
@@ -51,5 +44,26 @@ public class Adm {
     
     //Metodos
     
+    public boolean login() {
+        if(credenciais(this.usuario, this.senha)) {
+            System.out.println("Login Efetuado com Sucesso");
+            return true;
+        }
+        else {
+            System.out.println("Credenciais invalidas");
+            return false;
+        }
+    }
     
+   private boolean credenciais(String usuario, String senha) {
+        if (this.usuario.equals("adm") && this.senha.equals("senha123")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+   
+   
 }

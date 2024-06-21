@@ -4,7 +4,7 @@
  */
 package luminabe.Model.Servicos;
 
-import luminabe.Model.Empresa;
+import luminabe.Model.Empresa.Empresa;
 
 /**
  *
