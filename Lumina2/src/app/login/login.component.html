@@ -55,6 +55,7 @@
                     class="form-control"
                     id="formGroupExampleInput"
                     placeholder="E-mail ou nome de usuário"
+                    [(ngModel)]="username"
                   />
                 </div>
                 <div class="mb-3">
@@ -67,12 +68,13 @@
                     class="form-control"
                     id="formGroupExampleInput2"
                     placeholder="Senha"
+                    [(ngModel)]="password"
                   />
                 </div>
                 <div class="row justify-content-center">
-                  <a href="/pages/"><button type="button" class="btn btn-success col-sm-4">
+                  <button type="button" class="btn btn-success col-sm-4" (click)="login()">
                     LOGIN
-                  </button></a>
+                  </button>
                 </div>
               </div>
             </div>
