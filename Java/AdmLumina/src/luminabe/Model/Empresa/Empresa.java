@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package luminabe.Model;
 
-/**
- *
- * @author victor
- */
-public class Empresa {
+package luminabe.Model.Empresa;
+
+import java.io.Serializable;
+
+public class Empresa implements Serializable {
 
     // ATRIBUTOS
     private int idEmpresa;
@@ -25,6 +20,7 @@ public class Empresa {
     
 
     //CONSTRUTOR
+   
     public Empresa(int idEmpresa, String cpf, String cnpj, String nomeEmpresa,
         String nomeResp, String emailEmpresa, String emailResp,
         String telefoneEmpresa, String telefoneResp, String siteEmpresa,
