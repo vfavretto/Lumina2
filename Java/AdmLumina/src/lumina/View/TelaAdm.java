@@ -3,16 +3,25 @@ package lumina.View;
 
 import javax.swing.*;
 import java.io.*;
+import lumina.Controller.*;
 import luminabe.Model.Empresa.ListaEmpresas;
 import luminabe.Model.Empresa.*;
 
 public class TelaAdm extends javax.swing.JFrame {
+    
+    private boolean camposHabilitados = false;
+    private ListaEmpresas listaEmpresas;
+    private DefaultListModel<String> listModel;
+    private Controller controle;
 
     /** Creates new form TelaAdm */
     public TelaAdm() {
         initComponents();
+        listaEmpresas = new ListaEmpresas(); 
+        listModel = new DefaultListModel<>(); 
+        controle = new Controller(listaEmpresas, listModel, jListEmpresasCadastradas);
     }
-    private boolean camposHabilitados = false;
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -496,6 +505,11 @@ public class TelaAdm extends javax.swing.JFrame {
         jListEmpresasCadastradas.setEnabled(false);
         jListEmpresasCadastradas.setInheritsPopupMenu(true);
         jListEmpresasCadastradas.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        jListEmpresasCadastradas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListEmpresasCadastradasMouseClicked(evt);
+            }
+        });
         jScrollEmpresasCadastradas.setViewportView(jListEmpresasCadastradas);
 
         txtBusca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -504,6 +518,16 @@ public class TelaAdm extends javax.swing.JFrame {
 
         fieldBusca.setBackground(new java.awt.Color(60, 60, 60));
         fieldBusca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50)));
+        fieldBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldBuscaActionPerformed(evt);
+            }
+        });
+        fieldBusca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldBuscaKeyTyped(evt);
+            }
+        });
 
         txtNomeEmp.setForeground(new java.awt.Color(255, 255, 255));
         txtNomeEmp.setText("Nome");
@@ -522,7 +546,13 @@ public class TelaAdm extends javax.swing.JFrame {
 
         boxTipos.setBackground(new java.awt.Color(102, 102, 102));
         boxTipos.setForeground(new java.awt.Color(255, 255, 255));
-        boxTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prestadora", "Contratante", "Ambos" }));
+        boxTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FORNECEDOR", "CONTRATANTE", "AMBAS" }));
+        boxTipos.setEnabled(false);
+        boxTipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxTiposActionPerformed(evt);
+            }
+        });
 
         fieldNomeEmp.setEditable(false);
         fieldNomeEmp.setBackground(new java.awt.Color(60, 60, 60));
@@ -591,6 +621,11 @@ public class TelaAdm extends javax.swing.JFrame {
         btnApagarCadastro.setText("Apagar");
         btnApagarCadastro.setToolTipText("");
         btnApagarCadastro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnApagarCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnApagarCadastroMouseClicked(evt);
+            }
+        });
         btnApagarCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnApagarCadastroActionPerformed(evt);
@@ -619,17 +654,16 @@ public class TelaAdm extends javax.swing.JFrame {
             painelGerEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelVerdeDecorativo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(painelGerEmpresaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtEmpresasCadastradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(painelGerEmpresaLayout.createSequentialGroup()
-                .addGroup(painelGerEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(painelGerEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelGerEmpresaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtEmpresasCadastradas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelGerEmpresaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(txtBusca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelGerEmpresaLayout.createSequentialGroup()
+                    .addGroup(painelGerEmpresaLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(painelGerEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelGerEmpresaLayout.createSequentialGroup()
@@ -646,12 +680,11 @@ public class TelaAdm extends javax.swing.JFrame {
                                         .addComponent(txtNomeEmp)
                                         .addGap(18, 18, 18)
                                         .addComponent(fieldNomeEmp))
-                                    .addGroup(painelGerEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jScrollEmpresasCadastradas, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(painelGerEmpresaLayout.createSequentialGroup()
-                                            .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnEditarCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jScrollEmpresasCadastradas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelGerEmpresaLayout.createSequentialGroup()
+                                        .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnEditarCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(painelGerEmpresaLayout.createSequentialGroup()
                                         .addComponent(txtEmailEmp)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -665,7 +698,7 @@ public class TelaAdm extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(boxTipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap())
         );
         painelGerEmpresaLayout.setVerticalGroup(
             painelGerEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -732,7 +765,7 @@ public class TelaAdm extends javax.swing.JFrame {
             .addComponent(panelBanner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdmLayout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
-                .addComponent(painelGerEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelGerEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(painelSuporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -834,23 +867,35 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnApagarCadastroActionPerformed
 
     private void btnEditarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarCadastroMouseClicked
-        if (camposHabilitados) {
-            // Desabilita a edição
-            fieldNomeEmp.setEditable(false);
-            fieldEmailEmp.setEditable(false);
-            fieldTelEmp.setEditable(false);
-            fieldSenhaGer.setEditable(false);
-            camposHabilitados = false;
-            btnEditarCadastro.setText("Editar");
-        } else {
-            // Habilita a edição
-            fieldNomeEmp.setEditable(true);
-            fieldEmailEmp.setEditable(true);
-            fieldTelEmp.setEditable(true);
-            fieldSenhaGer.setEditable(true);
-            camposHabilitados = true;
-            btnEditarCadastro.setText("Salvar");
-        }
+            if (camposHabilitados) {
+                 // Desabilita a edição e salva as alterações
+                fieldNomeEmp.setEditable(false);
+                fieldEmailEmp.setEditable(false);
+                fieldTelEmp.setEditable(false);
+                fieldSenhaGer.setEditable(false);
+                boxTipos.setEnabled(false);
+                camposHabilitados = false;
+                btnEditarCadastro.setText("Editar");
+
+                // Salva as alterações na empresa selecionada
+                int index = jListEmpresasCadastradas.getSelectedIndex();
+                if (index != -1 && listaEmpresas != null && index < listaEmpresas.getEmpresas().size()) {
+                    Empresa empresaSelecionada = listaEmpresas.getEmpresas().get(index);
+                    controle.editarEmpresa(empresaSelecionada, fieldNomeEmp.getText(), fieldEmailEmp.getText(), fieldTelEmp.getText(), fieldSenhaGer.getText(), tipoEmpresa.valueOf(boxTipos.getSelectedItem().toString()));
+                    listModel.set(index, empresaSelecionada.getNomeEmpresa());
+                } else {
+                    System.out.println("Erro ao salvar alterações.");
+                }
+            } else {
+                // Habilita a edição
+                fieldNomeEmp.setEditable(true);
+                fieldEmailEmp.setEditable(true);
+                fieldTelEmp.setEditable(true);
+                fieldSenhaGer.setEditable(true);
+                boxTipos.setEnabled(true);
+                camposHabilitados = true;
+                btnEditarCadastro.setText("Salvar");
+    }
     }//GEN-LAST:event_btnEditarCadastroMouseClicked
 
     private void btnSalvarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarCadastroMouseClicked
@@ -859,10 +904,11 @@ public class TelaAdm extends javax.swing.JFrame {
                 if (escolha == JFileChooser.APPROVE_OPTION) {
                     File arquivoSelecionado = fileChooser.getSelectedFile();
                     String caminho = arquivoSelecionado.getAbsolutePath();
-                    // Aqui você pode usar o caminho para salvar o arquivo onde desejar
-                   ListaEmpresas listaEmpresas = new ListaEmpresas();
+                    if (!caminho.endsWith(".dat")) {
+                        caminho += ".dat";
+                    }
                     try {
-                        listaEmpresas.gravar(caminho+ ".dat", listaEmpresas);
+                        listaEmpresas.gravar(caminho, listaEmpresas);
                         System.out.println("Arquivo salvo com sucesso em: " + caminho);
                         
                     } catch (IOException ex) {
@@ -872,34 +918,83 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarCadastroMouseClicked
 
     private void btnAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirMouseClicked
+                                     
         JFileChooser fileChooser = new JFileChooser();
-                int escolha = fileChooser.showOpenDialog(null);
-                if (escolha == JFileChooser.APPROVE_OPTION) {
-                    File arquivoSelecionado = fileChooser.getSelectedFile();
-                    String caminho = arquivoSelecionado.getAbsolutePath();
-
-                    // Aqui você pode chamar o método ler da ListaEmpresas para ler os dados do arquivo
-                    ListaEmpresas listaEmpresas = null;
-                    try {
-                        listaEmpresas.ler(caminho);
-                        System.out.println("Arquivo lido com sucesso: " + caminho);
-                        // Exibir os dados lidos, por exemplo:
-                        // System.out.println(listaEmpresas);
-                        DefaultListModel<String> listModel = new DefaultListModel<>();
-                       for (Empresa empresa : listaEmpresas.getEmpresas()) {
-                            listModel.addElement(empresa.getNomeEmpresa());
-                        }
-                        jListEmpresasCadastradas.setModel(listModel);
-
-                    } catch (IOException | ClassNotFoundException ex) {
-                        ex.getMessage();
-                    }
-                }
+        int escolha = fileChooser.showOpenDialog(null);
+        if (escolha == JFileChooser.APPROVE_OPTION) {
+            File arquivoSelecionado = fileChooser.getSelectedFile();
+            String caminho = arquivoSelecionado.getAbsolutePath();
+            try {
+                // Ler o arquivo e armazenar na variável listaEmpresas
+                listaEmpresas = (ListaEmpresas) ListaEmpresas.ler(caminho);
+                System.out.println("Arquivo lido com sucesso: " + caminho);
+                controle.atualizarLista(listaEmpresas);
+                fieldNomeEmp.setText("");
+                fieldEmailEmp.setText("");
+                fieldTelEmp.setText("");
+                fieldSenhaGer.setText("");
+                boxTipos.setSelectedItem("");
+                
+            } catch (IOException | ClassNotFoundException ex) {
+                ex.getMessage();
+            }
+    }
+    
+    
     }//GEN-LAST:event_btnAbrirMouseClicked
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void jListEmpresasCadastradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListEmpresasCadastradasMouseClicked
+        if (camposHabilitados) {
+            return; //trava a na empresa a ser editada
+        }
+        JList list = (JList) evt.getSource();
+        int index = list.locationToIndex(evt.getPoint());
+        if (index != -1) {
+            list.setSelectedIndex(index);
+            Empresa empresaSelecionada = listaEmpresas.getEmpresas().get(index);
+            if (listaEmpresas != null && index < listaEmpresas.getEmpresas().size()) {
+                fieldNomeEmp.setText(empresaSelecionada.getNomeEmpresa());
+                fieldEmailEmp.setText(empresaSelecionada.getEmailEmpresa());
+                fieldTelEmp.setText(empresaSelecionada.getTelefoneEmpresa());
+                fieldSenhaGer.setText(empresaSelecionada.getSenha());
+                boxTipos.setSelectedItem(empresaSelecionada.getTipoEmpresa().toString());
+            } else {
+                System.out.println("Erro");
+            }
+        }
+    }//GEN-LAST:event_jListEmpresasCadastradasMouseClicked
+
+    private void boxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTiposActionPerformed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_boxTiposActionPerformed
+
+    private void fieldBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldBuscaActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_fieldBuscaActionPerformed
+
+    private void fieldBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBuscaKeyTyped
+        System.out.println("Tecla Pressionada");
+        String busca = fieldBusca.getText();
+        if (controle != null) {
+            controle.filtroLista(busca);
+        } else {
+            System.out.println("Controle não inicializado.");
+        }
+    }//GEN-LAST:event_fieldBuscaKeyTyped
+
+    private void btnApagarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApagarCadastroMouseClicked
+         int indiceSelecionado = jListEmpresasCadastradas.getSelectedIndex();
+         if (indiceSelecionado != -1) {
+            controle.apagarEmpresa(indiceSelecionado);
+         } else {
+            System.out.println("Nenhuma empresa selecionada para apagar.");
+         }
+    }//GEN-LAST:event_btnApagarCadastroMouseClicked
 
     /**
      * @param args the command line arguments

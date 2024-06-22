@@ -1,5 +1,6 @@
 
 package luminabe.Model.Admnistrador;
+
 import luminabe.Model.Empresa.*;
 import java.io.IOException;
 import java.util.Random;
@@ -43,7 +44,9 @@ public class Testes {
         Random random = new Random();
         for (int i = 0; i < nomesEmpresas.length; i++) {
             String nomeEmpresa = nomesEmpresas[i];
-            String emailEmpresa = nomeEmpresa.toLowerCase().replace(" ", "") + "@example.com";
+            String nomeSemEspacos = nomeEmpresa.replace(" ", "");
+            String[] partesNome = nomeSemEspacos.split("-");
+            String emailEmpresa = partesNome[0] + "@" + partesNome[0] + ".com";
             String telefoneEmpresa = generateRandomPhoneNumber();
             String linkedin = "linkedin" + (i + 1);
             String facebook = "facebook" + (i + 1);
@@ -57,7 +60,10 @@ public class Testes {
             String descEmpresa = "Descrição da " + nomeEmpresa;
             String imgEmpresa = "imagem" + (i + 1) + ".jpg";
 
-            Empresa empresa = new Empresa(i + 1, "", "", nomeEmpresa, "Responsável " + (i + 1),
+            // Gerar aleatoriamente o tipo de empresa
+            tipoEmpresa tipo = gerarTipoEmpresaAleatorio();
+
+            Empresa empresa = new Empresa(i + 1, tipo, "", "", nomeEmpresa, "Responsável " + (i + 1),
                     emailEmpresa, "responsavel" + (i + 1) + "@example.com", telefoneEmpresa,
                     generateRandomPhoneNumber(), "www." + nomeEmpresa.toLowerCase().replace(" ", "") + ".com",
                     linkedin, facebook, instagram, endereco, uf, cidade, pais, cep, senha, descEmpresa, imgEmpresa);
@@ -84,5 +90,12 @@ public class Testes {
             cep.append(random.nextInt(10));
         }
         return cep.toString();
+    }
+
+    // Método para gerar aleatoriamente o tipo de empresa
+    private static tipoEmpresa gerarTipoEmpresaAleatorio() {
+        Random random = new Random();
+        int index = random.nextInt(tipoEmpresa.values().length);
+        return tipoEmpresa.values()[index];
     }
 }
