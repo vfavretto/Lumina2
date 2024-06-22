@@ -1,4 +1,3 @@
-
 package luminabe.Model.Admnistrador;
 
 public class Adm {
@@ -41,29 +40,23 @@ public class Adm {
         this.senha = senha;
     }
 
-    
     //Metodos
-    
     public boolean login() {
-        if(credenciais(this.usuario, this.senha)) {
+        if (credenciais(this.usuario, this.senha)) {
             System.out.println("Login Efetuado com Sucesso");
             return true;
-        }
-        else {
+        } else {
             System.out.println("Credenciais invalidas");
             return false;
         }
     }
-    
-   private boolean credenciais(String usuario, String senha) {
+
+    private boolean credenciais(String usuario, String senha) {
         if (this.usuario.equals("adm") && this.senha.equals("senha123")) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
-    
-   
-   
+
 }

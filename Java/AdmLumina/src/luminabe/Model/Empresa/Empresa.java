@@ -1,4 +1,3 @@
-
 package luminabe.Model.Empresa;
 
 import java.io.Serializable;
@@ -7,6 +6,7 @@ public class Empresa implements Serializable {
 
     // ATRIBUTOS
     private int idEmpresa;
+    private tipoEmpresa tipoEmpresa;
     private String cpf, cnpj;
     private String nomeEmpresa, nomeResp;
     private String emailEmpresa, emailResp;
@@ -17,17 +17,16 @@ public class Empresa implements Serializable {
     private String senha;
     private String descEmpresa;
     private String imgEmpresa;
-    
 
     //CONSTRUTOR
-   
-    public Empresa(int idEmpresa, String cpf, String cnpj, String nomeEmpresa,
-        String nomeResp, String emailEmpresa, String emailResp,
-        String telefoneEmpresa, String telefoneResp, String siteEmpresa,
-        String linkedin, String facebook, String instagram, String endereco,
-        String uf, String cidade, String pais, String cep, String senha,
-        String descEmpresa, String imgEmpresa) {
+    public Empresa(int idEmpresa, tipoEmpresa tipoEmpresa, String cpf, String cnpj, String nomeEmpresa,
+            String nomeResp, String emailEmpresa, String emailResp,
+            String telefoneEmpresa, String telefoneResp, String siteEmpresa,
+            String linkedin, String facebook, String instagram, String endereco,
+            String uf, String cidade, String pais, String cep, String senha,
+            String descEmpresa, String imgEmpresa) {
         this.idEmpresa = idEmpresa;
+        this.tipoEmpresa = tipoEmpresa;
         this.cpf = cpf;
         this.cnpj = cnpj;
         this.nomeEmpresa = nomeEmpresa;
@@ -49,10 +48,14 @@ public class Empresa implements Serializable {
         this.descEmpresa = descEmpresa;
         this.imgEmpresa = imgEmpresa;
     }
-    
+
     // GETTERS
     public int getIdEmpresa() {
         return idEmpresa;
+    }
+
+    public tipoEmpresa getTipoEmpresa() {
+        return tipoEmpresa;
     }
 
     public String getCpf() {
@@ -123,7 +126,7 @@ public class Empresa implements Serializable {
         return cep;
     }
 
-    private String getSenha() {
+    public String getSenha() {
         return senha;
     }
 
@@ -137,6 +140,10 @@ public class Empresa implements Serializable {
 
     public void setIdEmpresa(int idEmpresa) {
         this.idEmpresa = idEmpresa;
+    }
+
+    public void setTipoEmpresa(tipoEmpresa tipoEmpresa) {
+        this.tipoEmpresa = tipoEmpresa;
     }
 
     public void setCpf(String cpf) {
@@ -207,7 +214,7 @@ public class Empresa implements Serializable {
         this.cep = cep;
     }
 
-    private void setSenha(String senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
@@ -218,9 +225,6 @@ public class Empresa implements Serializable {
     public void setImgEmpresa(String imgEmpresa) {
         this.imgEmpresa = imgEmpresa;
     }
-    
-    
+
     // METODOS CONCRETOS
-    
-    
 }
