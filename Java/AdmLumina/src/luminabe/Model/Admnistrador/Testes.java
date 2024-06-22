@@ -1,4 +1,3 @@
-
 package luminabe.Model.Admnistrador;
 
 import luminabe.Model.Empresa.*;
@@ -6,6 +5,7 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Testes {
+
     public static void main(String[] args) {
         ListaEmpresas listaEmpresas = new ListaEmpresas();
 
