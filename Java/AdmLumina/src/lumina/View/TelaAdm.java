@@ -13,6 +13,8 @@ public class TelaAdm extends javax.swing.JFrame {
     private ListaEmpresas listaEmpresas;
     private DefaultListModel<String> listModel;
     private Controller controle;
+    private Empresa empresaSelecionada;
+    private String busca = "";
 
     /** Creates new form TelaAdm */
     public TelaAdm() {
@@ -882,6 +884,7 @@ public class TelaAdm extends javax.swing.JFrame {
                 if (index != -1 && listaEmpresas != null && index < listaEmpresas.getEmpresas().size()) {
                     Empresa empresaSelecionada = listaEmpresas.getEmpresas().get(index);
                     controle.editarEmpresa(empresaSelecionada, fieldNomeEmp.getText(), fieldEmailEmp.getText(), fieldTelEmp.getText(), fieldSenhaGer.getText(), tipoEmpresa.valueOf(boxTipos.getSelectedItem().toString()));
+                    controle.atualizarLista(listaEmpresas);
                     listModel.set(index, empresaSelecionada.getNomeEmpresa());
                 } else {
                     System.out.println("Erro ao salvar alterações.");
@@ -948,24 +951,36 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void jListEmpresasCadastradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListEmpresasCadastradasMouseClicked
-        if (camposHabilitados) {
-            return; //trava a na empresa a ser editada
-        }
-        JList list = (JList) evt.getSource();
-        int index = list.locationToIndex(evt.getPoint());
-        if (index != -1) {
-            list.setSelectedIndex(index);
-            Empresa empresaSelecionada = listaEmpresas.getEmpresas().get(index);
-            if (listaEmpresas != null && index < listaEmpresas.getEmpresas().size()) {
-                fieldNomeEmp.setText(empresaSelecionada.getNomeEmpresa());
-                fieldEmailEmp.setText(empresaSelecionada.getEmailEmpresa());
-                fieldTelEmp.setText(empresaSelecionada.getTelefoneEmpresa());
-                fieldSenhaGer.setText(empresaSelecionada.getSenha());
-                boxTipos.setSelectedItem(empresaSelecionada.getTipoEmpresa().toString());
-            } else {
-                System.out.println("Erro");
+if (camposHabilitados) {
+        return; // Impede a edição enquanto estiver em andamento
+    }
+    JList<String> list = (JList<String>) evt.getSource();
+    int index = list.locationToIndex(evt.getPoint());
+    if (index != -1) {
+        String nomeEmpresaSelecionada = (String) list.getModel().getElementAt(index); // Obtém o nome da empresa selecionada na lista
+        empresaSelecionada = null;
+        for (int i = 0; i < listaEmpresas.getEmpresas().size(); i++) {
+            Empresa empresa = listaEmpresas.getEmpresas().get(i);
+            if (empresa.getNomeEmpresa().equals(nomeEmpresaSelecionada)) {
+                // Encontrou a empresa correspondente na lista original
+                empresaSelecionada = empresa;
+                break; // Interrompe o loop ao encontrar a empresa correspondente
             }
         }
+        if (empresaSelecionada != null) {
+            // Carrega os campos correspondentes à empresa selecionada
+            fieldNomeEmp.setText(empresaSelecionada.getNomeEmpresa());
+            fieldEmailEmp.setText(empresaSelecionada.getEmailEmpresa());
+            fieldTelEmp.setText(empresaSelecionada.getTelefoneEmpresa());
+            fieldSenhaGer.setText(empresaSelecionada.getSenha());
+            boxTipos.setSelectedItem(empresaSelecionada.getTipoEmpresa().toString());
+
+            // Atualiza a seleção visual na JList
+            list.setSelectedIndex(index);
+        } else {
+            System.out.println("Erro ao obter a empresa selecionada.");
+        }
+    }
     }//GEN-LAST:event_jListEmpresasCadastradasMouseClicked
 
     private void boxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTiposActionPerformed
@@ -979,7 +994,7 @@ public class TelaAdm extends javax.swing.JFrame {
 
     private void fieldBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBuscaKeyTyped
         System.out.println("Tecla Pressionada");
-        String busca = fieldBusca.getText();
+        busca = fieldBusca.getText();
         if (controle != null) {
             controle.filtroLista(busca);
         } else {
@@ -988,12 +1003,7 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldBuscaKeyTyped
 
     private void btnApagarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApagarCadastroMouseClicked
-         int indiceSelecionado = jListEmpresasCadastradas.getSelectedIndex();
-         if (indiceSelecionado != -1) {
-            controle.apagarEmpresa(indiceSelecionado);
-         } else {
-            System.out.println("Nenhuma empresa selecionada para apagar.");
-         }
+        controle.apagarEmpresa(empresaSelecionada, busca);
     }//GEN-LAST:event_btnApagarCadastroMouseClicked
 
     /**

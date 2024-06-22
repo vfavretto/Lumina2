@@ -41,58 +41,63 @@ public class Controller {
         // Aqui você pode adicionar a lógica para salvar as alterações no banco de dados, por exemplo
     }
     
-    public void apagarEmpresa(int indiceEmpresa) {
-    if (indiceEmpresa >= 0 && indiceEmpresa < listaEmpresas.getEmpresas().size()) {
-        Empresa empresaApagar = listaEmpresas.getEmpresas().get(indiceEmpresa);
-        listaEmpresas.getEmpresas().remove(empresaApagar);
-        listModel.remove(indiceEmpresa);
-        System.out.println("Empresa apagada: " + empresaApagar.getNomeEmpresa());
-    } else {
-        System.out.println("Índice inválido para apagar empresa.");
-    }
-}
-    
-    
-    public void atualizarLista(ListaEmpresas listaEmpresas) {
-        this.listaEmpresas = listaEmpresas;
-        // Limpa o listModel
-        this.listModel.clear();
-
-        // Adicionar os nomes das empresas atualizados ao listModel
-        if (listaEmpresas != null) {
-            for (Empresa empresa : listaEmpresas.getEmpresas()) {
-                this.listModel.addElement(empresa.getNomeEmpresa());
-            } 
-            this.jListEmpresasCadastradas.setModel(listModel);
-
+//    public void apagarEmpresa(int indiceEmpresa) {
+//    if (indiceEmpresa >= 0 && indiceEmpresa < listaEmpresas.getEmpresas().size()) {
+//        Empresa empresaApagar = listaEmpresas.getEmpresas().get(indiceEmpresa);
+//        listaEmpresas.getEmpresas().remove(empresaApagar);
+//        listModel.remove(indiceEmpresa);
+//        System.out.println("Empresa apagada: " + empresaApagar.getNomeEmpresa());
+//    } else {
+//        System.out.println("Índice inválido para apagar empresa.");
+//    }
+//}
+   public void apagarEmpresa(Empresa empresaSelecionada, String busca) {
+    if (empresaSelecionada != null) {
+        int indiceOriginal = listaEmpresas.getEmpresas().indexOf(empresaSelecionada); // Obtém o índice na lista original
+        if (indiceOriginal != -1) {
+            listaEmpresas.getEmpresas().remove(indiceOriginal); // Remove a empresa da lista original
+            atualizarLista(listaEmpresas); // Atualiza a lista exibida
+            filtroLista(busca);
+            System.out.println("Empresa apagada: " + empresaSelecionada.getNomeEmpresa());
         } else {
-                    System.out.println("Erro ao carregar a lista de empresas.");
-                }
-
+            System.out.println("Erro: Índice original inválido.");
+        }
+    } else {
+        System.out.println("Erro: Empresa não selecionada.");
     }
+}
     
-    public void filtroLista(String busca) {
-        if (listaEmpresas != null) {
-            if (listaEmpresas != null && !listaEmpresas.getEmpresas().isEmpty()) {
-                DefaultListModel<String> nomeFiltrado = new DefaultListModel<>();
-                for (Empresa empresa : listaEmpresas.getEmpresas()) {
-                    if (empresa.getNomeEmpresa().toLowerCase().contains(busca.toLowerCase())) {
-                        nomeFiltrado.addElement(empresa.getNomeEmpresa());
-                    }
-                }
-                if (!nomeFiltrado.isEmpty()) {
-                    // mostra o nome filtrado na lista
-                    jListEmpresasCadastradas.setModel(nomeFiltrado);
-                } else {
-                    //se nao tem nada no campo mostra tudo
-                    atualizarLista(listaEmpresas);
-                }
-            } else {
-                System.out.println("Lista de empresas vazia ou nula.");
+   public void atualizarLista(ListaEmpresas listaEmpresas) {
+    this.listaEmpresas = listaEmpresas;
+    this.listModel.clear();
+    if (listaEmpresas != null) {
+        for (Empresa empresa : listaEmpresas.getEmpresas()) {
+            this.listModel.addElement(empresa.getNomeEmpresa());
+        }
+        this.jListEmpresasCadastradas.setModel(listModel);
+    } else {
+        System.out.println("Erro ao carregar a lista de empresas.");
     }
+}
+
+    
+public void filtroLista(String busca) {
+    System.out.println(busca);
+    if (listaEmpresas != null && !listaEmpresas.getEmpresas().isEmpty()) {
+        DefaultListModel<String> nomeFiltrado = new DefaultListModel<>();
+        for (Empresa empresa : listaEmpresas.getEmpresas()) {
+            if (empresa.getNomeEmpresa().toLowerCase().contains(busca.toLowerCase())) {
+                nomeFiltrado.addElement(empresa.getNomeEmpresa());
+            }
+        }
+        if (!nomeFiltrado.isEmpty()) {
+            jListEmpresasCadastradas.setModel(nomeFiltrado);
+        } else {
+            atualizarLista(listaEmpresas);
+        }
+    } else {
+        System.out.println("Lista de empresas vazia ou nula.");
+    }
+}
 
     }
-
-
-}
-}
