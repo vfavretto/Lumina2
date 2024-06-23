@@ -71,9 +71,11 @@ public class Controller {
         fieldSenhaGer.setText("");
         boxTipos.setSelectedItem("");
     }
+
     public void atualizarLista(ListaInformacoes listaInformacoes) {
         this.atualizarLista(listaInformacoes, chamadosFinalizadosModel);
     }
+
     public void atualizarLista(ListaInformacoes listaInformacoes, DefaultComboBoxModel<String> chamadosFinalizadosModel) {
         this.listaInformacoes = listaInformacoes;
         this.empresasModel.clear();
@@ -129,5 +131,32 @@ public class Controller {
             System.out.println("Erro: índice do chamado inválido.");
         }
     }
+    
+public void reabrirChamado(String nomeResponsavel) {
+    if (listaInformacoes != null && !listaInformacoes.getChamados().isEmpty()) {
+        for (Chamado chamado : listaInformacoes.getChamados()) {
+            String nomeChamado = chamado.getNomeResponsavel();
+            int indiceSeparador = nomeResponsavel.indexOf(" - ");
+            if (indiceSeparador != -1) {
+                String nomeSemData = nomeResponsavel.substring(indiceSeparador + 3); // +3 para ignorar " - "
+                if (nomeChamado.equalsIgnoreCase(nomeSemData)) {
+                    chamado.setStatusChamado(statusChamado.ABERTO);
+                    atualizarLista(listaInformacoes);
+                    System.out.println("Chamado reaberto para: " + nomeResponsavel);
+                    return; // Encerra o método após encontrar o chamado correspondente
+                }
+            } else {
+                System.out.println("Formato de chamado inválido: " + nomeResponsavel);
+            }
+        }
+        System.out.println("Chamado não encontrado para: " + nomeResponsavel);
+    } else {
+        System.out.println("Lista de chamados vazia ou nula.");
+    }
+}
+
+
+
 
 }
+

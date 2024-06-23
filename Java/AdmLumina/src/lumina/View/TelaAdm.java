@@ -15,6 +15,7 @@ public class TelaAdm extends javax.swing.JFrame {
     private Controller controle;
     private Empresa empresaSelecionada;
     private Chamado chamadoSelecionado;
+    private DefaultComboBoxModel<String> chamadosFinalizadosModel;
 
     /**
      * Creates new form TelaAdm
@@ -24,9 +25,11 @@ public class TelaAdm extends javax.swing.JFrame {
         listaInformacoes = new ListaInformacoes();
         empresasModel = new DefaultListModel<>();
         chamadosModel = new DefaultListModel<>();
+        chamadosFinalizadosModel = new DefaultComboBoxModel<>();
         controle = new Controller(listaInformacoes, empresasModel, chamadosModel, jListEmpresasCadastradas, jListChamadosAbertos, boxChamadosFinalizados);
         controle.atualizarLista(listaInformacoes);
         controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -190,6 +193,11 @@ public class TelaAdm extends javax.swing.JFrame {
         btnReabrirChamado.setText("Reabrir");
         btnReabrirChamado.setToolTipText("");
         btnReabrirChamado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnReabrirChamado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReabrirChamadoMouseClicked(evt);
+            }
+        });
         btnReabrirChamado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReabrirChamadoActionPerformed(evt);
@@ -1049,10 +1057,17 @@ public class TelaAdm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jListChamadosAbertosMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void btnReabrirChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReabrirChamadoMouseClicked
+         String nomeResponsavelSelecionado = (String) boxChamadosFinalizados.getSelectedItem();
+         System.out.println(nomeResponsavelSelecionado);
+         controle.reabrirChamado(nomeResponsavelSelecionado);
+    
+    }//GEN-LAST:event_btnReabrirChamadoMouseClicked
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1063,16 +1078,28 @@ public class TelaAdm extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAdm.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaAdm.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaAdm.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaAdm.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
