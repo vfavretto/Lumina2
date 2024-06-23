@@ -14,6 +14,7 @@ public class TelaAdm extends javax.swing.JFrame {
     private DefaultListModel<String> chamadosModel;
     private Controller controle;
     private Empresa empresaSelecionada;
+    private Chamado chamadoSelecionado;
 
     /**
      * Creates new form TelaAdm
@@ -23,7 +24,7 @@ public class TelaAdm extends javax.swing.JFrame {
         listaInformacoes = new ListaInformacoes();
         empresasModel = new DefaultListModel<>();
         chamadosModel = new DefaultListModel<>();
-        controle = new Controller(listaInformacoes, empresasModel, chamadosModel, jListEmpresasCadastradas, jListChamadosAbertos);
+        controle = new Controller(listaInformacoes, empresasModel, chamadosModel, jListEmpresasCadastradas, jListChamadosAbertos, boxChamadosFinalizados);
         controle.atualizarLista(listaInformacoes);
         controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
     }
@@ -160,6 +161,11 @@ public class TelaAdm extends javax.swing.JFrame {
         btnFinalizarChamado.setText("Finalizar");
         btnFinalizarChamado.setToolTipText("");
         btnFinalizarChamado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFinalizarChamado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFinalizarChamadoMouseClicked(evt);
+            }
+        });
         btnFinalizarChamado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinalizarChamadoActionPerformed(evt);
@@ -216,6 +222,11 @@ public class TelaAdm extends javax.swing.JFrame {
         jListChamadosAbertos.setEnabled(false);
         jListChamadosAbertos.setInheritsPopupMenu(true);
         jListChamadosAbertos.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        jListChamadosAbertos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListChamadosAbertosMouseClicked(evt);
+            }
+        });
         jScrollChamadosAbertos.setViewportView(jListChamadosAbertos);
 
         txtBuscaChamados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -928,7 +939,7 @@ public class TelaAdm extends javax.swing.JFrame {
 
     private void btnAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirMouseClicked
 
-       JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         int escolha = fileChooser.showOpenDialog(null);
         if (escolha == JFileChooser.APPROVE_OPTION) {
             File arquivoSelecionado = fileChooser.getSelectedFile();
@@ -942,7 +953,7 @@ public class TelaAdm extends javax.swing.JFrame {
             } catch (IOException | ClassNotFoundException ex) {
                 ex.printStackTrace();
             }
-    }
+        }
 
     }//GEN-LAST:event_btnAbrirMouseClicked
 
@@ -1003,6 +1014,40 @@ public class TelaAdm extends javax.swing.JFrame {
     private void fieldBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBuscaKeyReleased
         controle.filtroLista(fieldBusca.getText());
     }//GEN-LAST:event_fieldBuscaKeyReleased
+
+    private void btnFinalizarChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizarChamadoMouseClicked
+        if (chamadoSelecionado != null) {
+            chamadoSelecionado.setStatusChamado(statusChamado.FINALIZADO);
+            controle.atualizarLista(listaInformacoes);
+            System.out.println("Chamado finalizado: " + chamadoSelecionado.getNomeResponsavel());
+        } else {
+            System.out.println("Nenhum chamado selecionado.");
+        }
+    }//GEN-LAST:event_btnFinalizarChamadoMouseClicked
+
+    private void jListChamadosAbertosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListChamadosAbertosMouseClicked
+        JList<String> list = (JList<String>) evt.getSource();
+        int index = list.locationToIndex(evt.getPoint());
+        if (index != -1) {
+            // Itera pela lista de chamados para encontrar o correspondente
+            chamadoSelecionado = null;
+            for (int i = 0; i < listaInformacoes.getChamados().size(); i++) {
+                Chamado chamado = listaInformacoes.getChamados().get(i);
+                String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
+                if (infoChamado.equals(list.getModel().getElementAt(index))) {
+                    // Encontrou o chamado correspondente na lista original
+                    chamadoSelecionado = chamado;
+                    break; // Interrompe o loop ao encontrar o chamado correspondente
+                }
+            }
+            if (chamadoSelecionado != null) {
+                // Atualiza a seleção visual na JList
+                list.setSelectedIndex(index);
+            } else {
+                System.out.println("Erro ao obter o chamado selecionado.");
+            }
+        }
+    }//GEN-LAST:event_jListChamadosAbertosMouseClicked
 
     /**
      * @param args the command line arguments

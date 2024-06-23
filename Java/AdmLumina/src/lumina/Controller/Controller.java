@@ -2,7 +2,7 @@ package lumina.Controller;
 
 import javax.swing.*;
 import luminabe.Model.Empresa.*;
-import luminabe.Model.Admnistrador.*;
+import luminabe.Model.Admnistrador.Adm;
 
 public class Controller {
 
@@ -13,22 +13,21 @@ public class Controller {
     private DefaultListModel<String> chamadosModel;
     private JList<String> jListEmpresasCadastradas;
     private JList<String> jListChamadosAbertos;
+    private DefaultComboBoxModel<String> chamadosFinalizadosModel;
+    private JComboBox<String> boxChamadosFinalizados;
 
     public Controller() {
 
     }
 
-    public Controller(ListaInformacoes listaInformacoes, DefaultListModel<String> empresasModel, DefaultListModel<String> chamadosModel, JList<String> jListEmpresasCadastradas, JList<String> jListChamadosAbertos) {
+    public Controller(ListaInformacoes listaInformacoes, DefaultListModel<String> empresasModel, DefaultListModel<String> chamadosModel, JList<String> jListEmpresasCadastradas, JList<String> jListChamadosAbertos, JComboBox<String> boxChamadosFinalizados) {
         this.listaInformacoes = listaInformacoes;
         this.empresasModel = empresasModel;
         this.chamadosModel = chamadosModel;
         this.jListEmpresasCadastradas = jListEmpresasCadastradas;
         this.jListChamadosAbertos = jListChamadosAbertos;
-    }
-
-    public void configurarModelos(DefaultListModel<String> empresasModel, DefaultListModel<String> chamadosModel) {
-        this.empresasModel = empresasModel;
-        this.chamadosModel = chamadosModel;
+        this.boxChamadosFinalizados = boxChamadosFinalizados;
+        this.chamadosFinalizadosModel = new DefaultComboBoxModel<>();
     }
 
     public boolean login(String usuario, String senha) {
@@ -72,11 +71,14 @@ public class Controller {
         fieldSenhaGer.setText("");
         boxTipos.setSelectedItem("");
     }
-
     public void atualizarLista(ListaInformacoes listaInformacoes) {
+        this.atualizarLista(listaInformacoes, chamadosFinalizadosModel);
+    }
+    public void atualizarLista(ListaInformacoes listaInformacoes, DefaultComboBoxModel<String> chamadosFinalizadosModel) {
         this.listaInformacoes = listaInformacoes;
         this.empresasModel.clear();
         this.chamadosModel.clear();
+        this.chamadosFinalizadosModel.removeAllElements();
 
         if (listaInformacoes != null) {
             for (Empresa empresa : listaInformacoes.getEmpresas()) {
@@ -85,10 +87,16 @@ public class Controller {
             this.jListEmpresasCadastradas.setModel(empresasModel);
 
             for (Chamado chamado : listaInformacoes.getChamados()) {
-                String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
-                this.chamadosModel.addElement(infoChamado);
+                if (chamado.getStatusChamado() == statusChamado.ABERTO) {
+                    String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
+                    this.chamadosModel.addElement(infoChamado);
+                } else if (chamado.getStatusChamado() == statusChamado.FINALIZADO) {
+                    String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
+                    this.chamadosFinalizadosModel.addElement(infoChamado); // Adiciona ao modelo dos chamados finalizados
+                }
             }
             this.jListChamadosAbertos.setModel(chamadosModel);
+            this.boxChamadosFinalizados.setModel(chamadosFinalizadosModel); // Define o modelo do JComboBox
         } else {
             System.out.println("Erro ao carregar a lista de empresas.");
         }
@@ -111,4 +119,15 @@ public class Controller {
             System.out.println("Lista de empresas vazia ou nula.");
         }
     }
+
+    public void finalizarChamado(int indiceSelecionado) {
+        if (indiceSelecionado >= 0 && indiceSelecionado < listaInformacoes.getChamados().size()) {
+            Chamado chamado = listaInformacoes.getChamados().get(indiceSelecionado);
+            chamado.setStatusChamado(statusChamado.FINALIZADO);
+            atualizarLista(listaInformacoes);
+        } else {
+            System.out.println("Erro: índice do chamado inválido.");
+        }
+    }
+
 }
