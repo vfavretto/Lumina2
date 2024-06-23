@@ -13,14 +13,22 @@ public class Controller {
     private DefaultListModel<String> chamadosModel;
     private JList<String> jListEmpresasCadastradas;
     private JList<String> jListChamadosAbertos;
+
     public Controller() {
 
     }
 
-    public Controller(ListaInformacoes listaInformacoes, DefaultListModel<String> empresasModel, JList<String> jListEmpresasCadastradas) {
+    public Controller(ListaInformacoes listaInformacoes, DefaultListModel<String> empresasModel, DefaultListModel<String> chamadosModel, JList<String> jListEmpresasCadastradas, JList<String> jListChamadosAbertos) {
         this.listaInformacoes = listaInformacoes;
         this.empresasModel = empresasModel;
+        this.chamadosModel = chamadosModel;
         this.jListEmpresasCadastradas = jListEmpresasCadastradas;
+        this.jListChamadosAbertos = jListChamadosAbertos;
+    }
+
+    public void configurarModelos(DefaultListModel<String> empresasModel, DefaultListModel<String> chamadosModel) {
+        this.empresasModel = empresasModel;
+        this.chamadosModel = chamadosModel;
     }
 
     public boolean login(String usuario, String senha) {
@@ -39,25 +47,14 @@ public class Controller {
         empresa.setTelefoneEmpresa(novoTelefone);
         empresa.setSenha(novaSenha);
         empresa.setTipoEmpresa(novoTipo);
-        // Aqui você pode adicionar a lógica para salvar as alterações no banco de dados, por exemplo
     }
 
-//    public void apagarEmpresa(int indiceEmpresa) {
-//    if (indiceEmpresa >= 0 && indiceEmpresa < listaEmpresas.getEmpresas().size()) {
-//        Empresa empresaApagar = listaEmpresas.getEmpresas().get(indiceEmpresa);
-//        listaEmpresas.getEmpresas().remove(empresaApagar);
-//        listModel.remove(indiceEmpresa);
-//        System.out.println("Empresa apagada: " + empresaApagar.getNomeEmpresa());
-//    } else {
-//        System.out.println("Índice inválido para apagar empresa.");
-//    }
-//}
     public void apagarEmpresa(Empresa empresaSelecionada, String busca) {
         if (empresaSelecionada != null) {
-            int indiceOriginal = listaInformacoes.getEmpresas().indexOf(empresaSelecionada); // Obtém o índice na lista original
+            int indiceOriginal = listaInformacoes.getEmpresas().indexOf(empresaSelecionada);
             if (indiceOriginal != -1) {
-                listaInformacoes.getEmpresas().remove(indiceOriginal); // Remove a empresa da lista original
-                atualizarLista(listaInformacoes); // Atualiza a lista exibida
+                listaInformacoes.getEmpresas().remove(indiceOriginal);
+                atualizarLista(listaInformacoes);
                 filtroLista(busca);
                 System.out.println("Empresa apagada: " + empresaSelecionada.getNomeEmpresa());
             } else {
@@ -79,19 +76,25 @@ public class Controller {
     public void atualizarLista(ListaInformacoes listaInformacoes) {
         this.listaInformacoes = listaInformacoes;
         this.empresasModel.clear();
+        this.chamadosModel.clear();
+
         if (listaInformacoes != null) {
             for (Empresa empresa : listaInformacoes.getEmpresas()) {
                 this.empresasModel.addElement(empresa.getNomeEmpresa());
             }
             this.jListEmpresasCadastradas.setModel(empresasModel);
+
+            for (Chamado chamado : listaInformacoes.getChamados()) {
+                String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
+                this.chamadosModel.addElement(infoChamado);
+            }
+            this.jListChamadosAbertos.setModel(chamadosModel);
         } else {
             System.out.println("Erro ao carregar a lista de empresas.");
         }
     }
 
-
     public void filtroLista(String busca) {
-        System.out.println(busca);
         if (listaInformacoes != null && !listaInformacoes.getEmpresas().isEmpty()) {
             DefaultListModel<String> nomeFiltrado = new DefaultListModel<>();
             for (Empresa empresa : listaInformacoes.getEmpresas()) {
@@ -108,5 +111,4 @@ public class Controller {
             System.out.println("Lista de empresas vazia ou nula.");
         }
     }
-
 }

@@ -23,7 +23,9 @@ public class TelaAdm extends javax.swing.JFrame {
         listaInformacoes = new ListaInformacoes();
         empresasModel = new DefaultListModel<>();
         chamadosModel = new DefaultListModel<>();
-        controle = new Controller(listaInformacoes, empresasModel, jListEmpresasCadastradas);
+        controle = new Controller(listaInformacoes, empresasModel, chamadosModel, jListEmpresasCadastradas, jListChamadosAbertos);
+        controle.atualizarLista(listaInformacoes);
+        controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
     }
 
     @SuppressWarnings("unchecked")
@@ -926,33 +928,21 @@ public class TelaAdm extends javax.swing.JFrame {
 
     private void btnAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirMouseClicked
 
-        JFileChooser fileChooser = new JFileChooser();
+       JFileChooser fileChooser = new JFileChooser();
         int escolha = fileChooser.showOpenDialog(null);
         if (escolha == JFileChooser.APPROVE_OPTION) {
             File arquivoSelecionado = fileChooser.getSelectedFile();
             String caminho = arquivoSelecionado.getAbsolutePath();
             try {
-                // Ler o arquivo e armazenar na variável listaEmpresas
                 listaInformacoes = (ListaInformacoes) ListaInformacoes.ler(caminho);
                 System.out.println("Arquivo lido com sucesso: " + caminho);
-                controle.atualizarLista(listaInformacoes); // Atualiza a lista de empresas na interface
-
-                // Adiciona código para carregar os chamados na JList jListChamadosAbertos
-                if (listaInformacoes != null) {
-                    for (Chamado chamado : listaInformacoes.getChamados()) {
-                        String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
-                        chamadosModel.addElement(infoChamado);
-                    }
-                    jListChamadosAbertos.setModel(chamadosModel); // Define o modelo da JList com os chamados carregados
-                } else {
-                    System.out.println("Lista de empresas vazia.");
-                }
+                controle.atualizarLista(listaInformacoes);
 
                 controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
             } catch (IOException | ClassNotFoundException ex) {
-                ex.getMessage();
+                ex.printStackTrace();
             }
-        }
+    }
 
     }//GEN-LAST:event_btnAbrirMouseClicked
 
