@@ -3,26 +3,27 @@ package lumina.View;
 import javax.swing.*;
 import java.io.*;
 import lumina.Controller.*;
-import luminabe.Model.Empresa.ListaEmpresas;
+import luminabe.Model.Empresa.ListaInformacoes;
 import luminabe.Model.Empresa.*;
 
 public class TelaAdm extends javax.swing.JFrame {
 
     private boolean camposHabilitados = false;
-    private ListaEmpresas listaEmpresas;
-    private DefaultListModel<String> listModel;
+    private ListaInformacoes listaInformacoes;
+    private DefaultListModel<String> empresasModel;
+    private DefaultListModel<String> chamadosModel;
     private Controller controle;
     private Empresa empresaSelecionada;
-    private String busca = "";
 
     /**
      * Creates new form TelaAdm
      */
     public TelaAdm() {
         initComponents();
-        listaEmpresas = new ListaEmpresas();
-        listModel = new DefaultListModel<>();
-        controle = new Controller(listaEmpresas, listModel, jListEmpresasCadastradas);
+        listaInformacoes = new ListaInformacoes();
+        empresasModel = new DefaultListModel<>();
+        chamadosModel = new DefaultListModel<>();
+        controle = new Controller(listaInformacoes, empresasModel, jListEmpresasCadastradas);
     }
 
     @SuppressWarnings("unchecked")
@@ -884,11 +885,11 @@ public class TelaAdm extends javax.swing.JFrame {
 
             // Salva as alterações na empresa selecionada
             int index = jListEmpresasCadastradas.getSelectedIndex();
-            if (index != -1 && listaEmpresas != null && index < listaEmpresas.getEmpresas().size()) {
-                Empresa empresaSelecionada = listaEmpresas.getEmpresas().get(index);
+            if (index != -1 && listaInformacoes != null && index < listaInformacoes.getEmpresas().size()) {
+                Empresa empresaSelecionada = listaInformacoes.getEmpresas().get(index);
                 controle.editarEmpresa(empresaSelecionada, fieldNomeEmp.getText(), fieldEmailEmp.getText(), fieldTelEmp.getText(), fieldSenhaGer.getText(), tipoEmpresa.valueOf(boxTipos.getSelectedItem().toString()));
-                controle.atualizarLista(listaEmpresas);
-                listModel.set(index, empresaSelecionada.getNomeEmpresa());
+                controle.atualizarLista(listaInformacoes);
+                empresasModel.set(index, empresaSelecionada.getNomeEmpresa());
             } else {
                 System.out.println("Erro ao salvar alterações.");
             }
@@ -914,7 +915,7 @@ public class TelaAdm extends javax.swing.JFrame {
                 caminho += ".dat";
             }
             try {
-                listaEmpresas.gravar(caminho, listaEmpresas);
+                listaInformacoes.gravar(caminho, listaInformacoes);
                 System.out.println("Arquivo salvo com sucesso em: " + caminho);
 
             } catch (IOException ex) {
@@ -932,21 +933,26 @@ public class TelaAdm extends javax.swing.JFrame {
             String caminho = arquivoSelecionado.getAbsolutePath();
             try {
                 // Ler o arquivo e armazenar na variável listaEmpresas
-                listaEmpresas = (ListaEmpresas) ListaEmpresas.ler(caminho);
+                listaInformacoes = (ListaInformacoes) ListaInformacoes.ler(caminho);
                 System.out.println("Arquivo lido com sucesso: " + caminho);
-                controle.atualizarLista(listaEmpresas);
-                controle.limparCampos(fieldNomeEmp, fieldEmailEmp,fieldTelEmp, fieldSenhaGer,boxTipos);
-//                fieldNomeEmp.setText("");
-//                fieldEmailEmp.setText("");
-//                fieldTelEmp.setText("");
-//                fieldSenhaGer.setText("");
-//                boxTipos.setSelectedItem("");
+                controle.atualizarLista(listaInformacoes); // Atualiza a lista de empresas na interface
 
+                // Adiciona código para carregar os chamados na JList jListChamadosAbertos
+                if (listaInformacoes != null) {
+                    for (Chamado chamado : listaInformacoes.getChamados()) {
+                        String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
+                        chamadosModel.addElement(infoChamado);
+                    }
+                    jListChamadosAbertos.setModel(chamadosModel); // Define o modelo da JList com os chamados carregados
+                } else {
+                    System.out.println("Lista de empresas vazia.");
+                }
+
+                controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
             } catch (IOException | ClassNotFoundException ex) {
                 ex.getMessage();
             }
         }
-
 
     }//GEN-LAST:event_btnAbrirMouseClicked
 
@@ -963,8 +969,8 @@ public class TelaAdm extends javax.swing.JFrame {
         if (index != -1) {
             String nomeEmpresaSelecionada = (String) list.getModel().getElementAt(index); // Obtém o nome da empresa selecionada na lista
             empresaSelecionada = null;
-            for (int i = 0; i < listaEmpresas.getEmpresas().size(); i++) {
-                Empresa empresa = listaEmpresas.getEmpresas().get(i);
+            for (int i = 0; i < listaInformacoes.getEmpresas().size(); i++) {
+                Empresa empresa = listaInformacoes.getEmpresas().get(i);
                 if (empresa.getNomeEmpresa().equals(nomeEmpresaSelecionada)) {
                     // Encontrou a empresa correspondente na lista original
                     empresaSelecionada = empresa;
@@ -1000,18 +1006,12 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldBuscaKeyTyped
 
     private void btnApagarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApagarCadastroMouseClicked
-        controle.apagarEmpresa(empresaSelecionada, busca);
-        controle.limparCampos(fieldNomeEmp, fieldEmailEmp,fieldTelEmp, fieldSenhaGer,boxTipos);
+        controle.apagarEmpresa(empresaSelecionada, fieldBusca.getText());
+        controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
     }//GEN-LAST:event_btnApagarCadastroMouseClicked
 
     private void fieldBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBuscaKeyReleased
-        System.out.println("Tecla Pressionada");
-        busca = fieldBusca.getText();
-        if (controle != null) {
-            controle.filtroLista(busca);
-        } else {
-            System.out.println("Controle não inicializado.");
-        }
+        controle.filtroLista(fieldBusca.getText());
     }//GEN-LAST:event_fieldBuscaKeyReleased
 
     /**

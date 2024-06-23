@@ -1,9 +1,10 @@
 package luminabe.Model.Empresa;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Chamado {
+public class Chamado implements Serializable {
 
     //Atributos
     public void setMsgEmpresa(String msgEmpresa) {
@@ -11,18 +12,21 @@ public class Chamado {
     }
 
     private Empresa empresa;
+
+    private statusChamado statusChamado;
     private String nomeResponsavel;
     private String dataInicio;
     private String msgSuporte, msgEmpresa;
 
     //Construtores
-    Chamado(Empresa empresa) {
+    public Chamado(Empresa empresa) {
         this.empresa = empresa;
+        this.statusChamado = statusChamado.ABERTO;
         this.nomeResponsavel = empresa.getNomeResp();
         this.dataInicio = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    Chamado(Empresa empresa, String dataInicio) {
+    public Chamado(Empresa empresa, String dataInicio) {
         this(empresa);
         this.dataInicio = dataInicio;
     }
@@ -30,6 +34,10 @@ public class Chamado {
     //Getters Setters
     public Empresa getEmpresa() {
         return empresa;
+    }
+
+    public statusChamado getStatusChamado() {
+        return statusChamado;
     }
 
     public String getNomeResponsavel() {
@@ -50,6 +58,10 @@ public class Chamado {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public void setStatusChamado(statusChamado statusChamado) {
+        this.statusChamado = statusChamado;
     }
 
     public void setNomeResponsavel(String nomeResponsavel) {

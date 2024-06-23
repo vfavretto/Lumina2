@@ -1,15 +1,18 @@
 package luminabe.Model.Empresa;
 
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaEmpresas implements Serializable {
+public class ListaInformacoes implements Serializable {
 
     private List<Empresa> empresas;
+    private List<Chamado> chamados;
 
-    public ListaEmpresas() {
+    public ListaInformacoes() {
         empresas = new ArrayList<>();
+        chamados = new ArrayList<>();
     }
 
     // Métodos da classe ListaEmpresas
@@ -23,6 +26,14 @@ public class ListaEmpresas implements Serializable {
 
     public List<Empresa> getEmpresas() {
         return empresas;
+    }
+    
+    public void adicionarChamado(Chamado chamado) {
+        chamados.add(chamado);
+    }
+  
+    public List<Chamado> getChamados() {
+        return chamados;
     }
 
     // Método para gravar a lista de empresas em um arquivo
