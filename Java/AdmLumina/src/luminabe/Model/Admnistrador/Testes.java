@@ -18,7 +18,7 @@ public class Testes {
 
         try {
             // Gravar a lista de empresas em um arquivo
-            ListaInformacoes.gravar("C:\\Users\\muril\\Desktop\\Nova pasta (2)\\empresas.dat", listaInformacoes);
+            ListaInformacoes.gravar("C:\\Users\\agenciagwu\\Documents\\TesteLumina\\empresas.dat", listaInformacoes);
 
             // Exibir a lista de empresas cadastradas
             System.out.println("Empresas cadastradas:");

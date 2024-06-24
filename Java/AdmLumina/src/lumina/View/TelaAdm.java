@@ -284,11 +284,11 @@ public class TelaAdm extends javax.swing.JFrame {
                 .addComponent(txtChamados)
                 .addGap(15, 15, 15)
                 .addGroup(painelSuporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBuscaChamados)
                     .addGroup(painelSuporteLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(fieldBuscaChamado, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
-                    .addComponent(txtBuscaChamados))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fieldBuscaChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollChamadosAbertos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelSuporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -575,6 +575,7 @@ public class TelaAdm extends javax.swing.JFrame {
         boxTipos.setForeground(new java.awt.Color(255, 255, 255));
         boxTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FORNECEDOR", "CONTRATANTE", "AMBAS" }));
         boxTipos.setEnabled(false);
+        boxTipos.setOpaque(true);
         boxTipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxTiposActionPerformed(evt);
@@ -724,7 +725,7 @@ public class TelaAdm extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(boxTipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollEmpresasCadastradas, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 7, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         painelGerEmpresaLayout.setVerticalGroup(
@@ -736,9 +737,9 @@ public class TelaAdm extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(painelGerEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelGerEmpresaLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(fieldBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE))
-                    .addComponent(txtBusca))
+                        .addComponent(txtBusca)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(fieldBusca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollEmpresasCadastradas, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -792,7 +793,7 @@ public class TelaAdm extends javax.swing.JFrame {
             .addComponent(panelBanner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdmLayout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
-                .addComponent(painelGerEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelGerEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(painelSuporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
