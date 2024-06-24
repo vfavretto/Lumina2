@@ -417,6 +417,11 @@ public class TelaAdm extends javax.swing.JFrame {
         btnEditarNoticia.setText("Editar");
         btnEditarNoticia.setToolTipText("");
         btnEditarNoticia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEditarNoticia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarNoticiaMouseClicked(evt);
+            }
+        });
         btnEditarNoticia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarNoticiaActionPerformed(evt);
@@ -1196,7 +1201,7 @@ public class TelaAdm extends javax.swing.JFrame {
                     listaInformacoes.removerPostagem(postagem);
                     System.out.println("Postagem removida:\nTítulo: " + postagem.getTitulo() + "\nConteúdo: " + postagem.getTexto());
                     controle.atualizarLista(listaInformacoes);
-                    return; 
+                    return;
                 }
             }
             JOptionPane.showMessageDialog(this, "Postagem não encontrada na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -1205,9 +1210,58 @@ public class TelaAdm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnApagarNotíciaMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnEditarNoticiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarNoticiaMouseClicked
+        // Verifica se o botão está com o texto "Editar"
+        if (btnEditarNoticia.getText().equals("Editar")) {
+            // Verifica se há uma notícia selecionada no JComboBox
+            if (boxListaDeNoticias.getSelectedIndex() != -1) {
+                // Obtém o título da notícia selecionada no JComboBox
+                String tituloNoticiaSelecionada = (String) boxListaDeNoticias.getSelectedItem();
+
+                // Percorre a lista de notícias para encontrar a notícia com o mesmo título
+                for (Blog noticia : listaInformacoes.getPostagens()) {
+                    if (noticia.getTitulo().equals(tituloNoticiaSelecionada)) {
+                        // Define o título da notícia no campo fieldTituloNoticia
+                        fieldTituloNoticia.setText(noticia.getTitulo());
+                        // Define o texto da notícia no campo fieldNoticia
+                        fieldNoticia.setText(noticia.getTexto());
+                        // Altera o texto do botão para "Salvar"
+                        btnEditarNoticia.setText("Salvar");
+                        return; // Encerra o loop após encontrar a notícia
+                    }
+                }
+                // Exibe uma mensagem de erro se a notícia não for encontrada
+                JOptionPane.showMessageDialog(this, "Notícia não encontrada na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
+            } else {
+                // Exibe uma mensagem de erro se nenhuma notícia estiver selecionada
+                JOptionPane.showMessageDialog(this, "Por favor, selecione uma notícia para editar.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (btnEditarNoticia.getText().equals("Salvar")) { // Se o botão estiver com o texto "Salvar"
+            // Obtém o título da notícia a ser editada
+            String tituloNoticiaEditar = fieldTituloNoticia.getText();
+
+            // Percorre a lista de notícias para encontrar a notícia com o mesmo título a ser editada
+            for (Blog noticia : listaInformacoes.getPostagens()) {
+                if (noticia.getTitulo().equals(tituloNoticiaEditar)) {
+                    // Atualiza o texto da notícia com o novo texto digitado
+                    noticia.setTexto(fieldNoticia.getText());
+                    // Altera o texto do botão de volta para "Editar"
+                    btnEditarNoticia.setText("Editar");
+                    // Limpa os campos de texto após salvar
+                    fieldTituloNoticia.setText("");
+                    fieldNoticia.setText("");
+                    // Exibe uma mensagem de sucesso
+                    JOptionPane.showMessageDialog(this, "Notícia salva com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    // Atualiza a lista de notícias
+                    controle.atualizarLista(listaInformacoes);
+                    return; // Encerra o loop após salvar a notícia
+                }
+            }
+            // Exibe uma mensagem de erro se a notícia não for encontrada para edição
+            JOptionPane.showMessageDialog(this, "Erro ao salvar: notícia não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarNoticiaMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
