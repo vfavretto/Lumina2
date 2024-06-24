@@ -6,6 +6,7 @@ import lumina.Controller.*;
 import luminabe.Model.Empresa.*;
 import luminabe.Model.Admnistrador.Blog;
 
+
 public class TelaAdm extends javax.swing.JFrame {
 
     private boolean camposHabilitados = false;
@@ -16,6 +17,7 @@ public class TelaAdm extends javax.swing.JFrame {
     private Empresa empresaSelecionada;
     private Chamado chamadoSelecionado;
     private DefaultComboBoxModel<String> chamadosFinalizadosModel;
+    private String urlPostagem;
 
     /**
      * Creates new form TelaAdm
@@ -29,7 +31,6 @@ public class TelaAdm extends javax.swing.JFrame {
         controle = new Controller(listaInformacoes, empresasModel, chamadosModel, jListEmpresasCadastradas, jListChamadosAbertos, boxChamadosFinalizados, boxListaDeNoticias);
         controle.atualizarLista(listaInformacoes);
         controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -48,7 +49,6 @@ public class TelaAdm extends javax.swing.JFrame {
         txtChamadosFinalizados = new javax.swing.JLabel();
         boxChamadosFinalizados = new javax.swing.JComboBox<>();
         btnReabrirChamado = new javax.swing.JButton();
-        btnApagarChamado = new javax.swing.JButton();
         jScrollChamadosAbertos = new javax.swing.JScrollPane();
         jListChamadosAbertos = new javax.swing.JList<>();
         txtBuscaChamados = new javax.swing.JLabel();
@@ -211,18 +211,6 @@ public class TelaAdm extends javax.swing.JFrame {
             }
         });
 
-        btnApagarChamado.setBackground(new java.awt.Color(102, 0, 0));
-        btnApagarChamado.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        btnApagarChamado.setForeground(new java.awt.Color(255, 255, 255));
-        btnApagarChamado.setText("Apagar");
-        btnApagarChamado.setToolTipText("");
-        btnApagarChamado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnApagarChamado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnApagarChamadoActionPerformed(evt);
-            }
-        });
-
         jListChamadosAbertos.setBackground(new java.awt.Color(102, 102, 102));
         jListChamadosAbertos.setBorder(new javax.swing.border.MatteBorder(null));
         jListChamadosAbertos.setForeground(new java.awt.Color(255, 255, 255));
@@ -274,10 +262,7 @@ public class TelaAdm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fieldBuscaChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(painelSuporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(painelSuporteLayout.createSequentialGroup()
-                                    .addComponent(btnApagarChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnReabrirChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnReabrirChamado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(boxChamadosFinalizados, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(painelSuporteLayout.createSequentialGroup()
                                     .addComponent(btnResponderChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,9 +296,7 @@ public class TelaAdm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boxChamadosFinalizados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(painelSuporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReabrirChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnApagarChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnReabrirChamado, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
 
@@ -918,10 +901,6 @@ public class TelaAdm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReabrirChamadoActionPerformed
 
-    private void btnApagarChamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarChamadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnApagarChamadoActionPerformed
-
     private void btnEditarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarCadastroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarCadastroActionPerformed
@@ -953,33 +932,13 @@ public class TelaAdm extends javax.swing.JFrame {
     private void btnEditarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarCadastroMouseClicked
         if (camposHabilitados) {
             // Desabilita a edição e salva as alterações
-            fieldNomeEmp.setEditable(false);
-            fieldEmailEmp.setEditable(false);
-            fieldTelEmp.setEditable(false);
-            fieldSenhaGer.setEditable(false);
-            boxTipos.setEnabled(false);
+            controle.desabilitaEdicaoEmpresa(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos, btnEditarCadastro);
+            controle.salvaAlteracaoEmpresa(jListEmpresasCadastradas, listaInformacoes, fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos, empresasModel);
             camposHabilitados = false;
-            btnEditarCadastro.setText("Editar");
-
-            // Salva as alterações na empresa selecionada
-            int index = jListEmpresasCadastradas.getSelectedIndex();
-            if (index != -1 && listaInformacoes != null && index < listaInformacoes.getEmpresas().size()) {
-                Empresa empresaSelecionada = listaInformacoes.getEmpresas().get(index);
-                controle.editarEmpresa(empresaSelecionada, fieldNomeEmp.getText(), fieldEmailEmp.getText(), fieldTelEmp.getText(), fieldSenhaGer.getText(), tipoEmpresa.valueOf(boxTipos.getSelectedItem().toString()));
-                controle.atualizarLista(listaInformacoes);
-                empresasModel.set(index, empresaSelecionada.getNomeEmpresa());
-            } else {
-                System.out.println("Erro ao salvar alterações.");
-            }
         } else {
             // Habilita a edição
-            fieldNomeEmp.setEditable(true);
-            fieldEmailEmp.setEditable(true);
-            fieldTelEmp.setEditable(true);
-            fieldSenhaGer.setEditable(true);
-            boxTipos.setEnabled(true);
+            controle.habilitaEdicaoEmpresa(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos, btnEditarCadastro);
             camposHabilitados = true;
-            btnEditarCadastro.setText("Salvar");
         }
     }//GEN-LAST:event_btnEditarCadastroMouseClicked
 
@@ -1013,10 +972,9 @@ public class TelaAdm extends javax.swing.JFrame {
                 listaInformacoes = (ListaInformacoes) ListaInformacoes.ler(caminho);
                 System.out.println("Arquivo lido com sucesso: " + caminho);
                 controle.atualizarLista(listaInformacoes);
-
                 controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
             } catch (IOException | ClassNotFoundException ex) {
-                ex.printStackTrace();
+                ex.getMessage();
             }
         }
 
@@ -1028,35 +986,12 @@ public class TelaAdm extends javax.swing.JFrame {
 
     private void jListEmpresasCadastradasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListEmpresasCadastradasMouseClicked
         if (camposHabilitados) {
-            return; // Impede a edição enquanto estiver em andamento
+            return; // Impede mudar de Empresa enquanto editando
         }
-        JList<String> list = (JList<String>) evt.getSource();
-        int index = list.locationToIndex(evt.getPoint());
-        if (index != -1) {
-            String nomeEmpresaSelecionada = (String) list.getModel().getElementAt(index); // Obtém o nome da empresa selecionada na lista
-            empresaSelecionada = null;
-            for (int i = 0; i < listaInformacoes.getEmpresas().size(); i++) {
-                Empresa empresa = listaInformacoes.getEmpresas().get(i);
-                if (empresa.getNomeEmpresa().equals(nomeEmpresaSelecionada)) {
-                    // Encontrou a empresa correspondente na lista original
-                    empresaSelecionada = empresa;
-                    break; // Interrompe o loop ao encontrar a empresa correspondente
-                }
-            }
-            if (empresaSelecionada != null) {
-                // Carrega os campos correspondentes à empresa selecionada
-                fieldNomeEmp.setText(empresaSelecionada.getNomeEmpresa());
-                fieldEmailEmp.setText(empresaSelecionada.getEmailEmpresa());
-                fieldTelEmp.setText(empresaSelecionada.getTelefoneEmpresa());
-                fieldSenhaGer.setText(empresaSelecionada.getSenha());
-                boxTipos.setSelectedItem(empresaSelecionada.getTipoEmpresa().toString());
-
-                // Atualiza a seleção visual na JList
-                list.setSelectedIndex(index);
-            } else {
-                System.out.println("Erro ao obter a empresa selecionada.");
-            }
-        }
+        JList<String> listaEmpresas = (JList<String>) evt.getSource();
+        int indice = listaEmpresas.locationToIndex(evt.getPoint());
+        empresaSelecionada = controle.selecionaEmpresa(indice, listaInformacoes, jListEmpresasCadastradas);
+        controle.carregaEmpresa(empresaSelecionada, fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos, jListEmpresasCadastradas);
     }//GEN-LAST:event_jListEmpresasCadastradasMouseClicked
 
     private void boxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTiposActionPerformed
@@ -1072,12 +1007,20 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldBuscaKeyTyped
 
     private void btnApagarCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApagarCadastroMouseClicked
-        controle.apagarEmpresa(empresaSelecionada, fieldBusca.getText());
-        controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
+        if (empresaSelecionada != null) {
+            int resposta = JOptionPane.showOptionDialog(this, "Você deseja apagar a empresa: " + empresaSelecionada.getNomeEmpresa() + "?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sim", "Não"}, "Sim");
+            if (resposta == JOptionPane.YES_OPTION) {
+                controle.apagarEmpresa(empresaSelecionada, fieldBusca.getText());
+                controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
+                empresaSelecionada = null;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma empresa para apagar.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnApagarCadastroMouseClicked
 
     private void fieldBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBuscaKeyReleased
-        controle.filtroLista(fieldBusca.getText());
+        controle.buscarEmpresa(fieldBusca.getText().trim());
     }//GEN-LAST:event_fieldBuscaKeyReleased
 
     private void btnFinalizarChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinalizarChamadoMouseClicked
@@ -1091,27 +1034,9 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFinalizarChamadoMouseClicked
 
     private void jListChamadosAbertosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListChamadosAbertosMouseClicked
-        JList<String> list = (JList<String>) evt.getSource();
-        int index = list.locationToIndex(evt.getPoint());
-        if (index != -1) {
-            // Itera pela lista de chamados para encontrar o correspondente
-            chamadoSelecionado = null;
-            for (int i = 0; i < listaInformacoes.getChamados().size(); i++) {
-                Chamado chamado = listaInformacoes.getChamados().get(i);
-                String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
-                if (infoChamado.equals(list.getModel().getElementAt(index))) {
-                    // Encontrou o chamado correspondente na lista original
-                    chamadoSelecionado = chamado;
-                    break; // Interrompe o loop ao encontrar o chamado correspondente
-                }
-            }
-            if (chamadoSelecionado != null) {
-                // Atualiza a seleção visual na JList
-                list.setSelectedIndex(index);
-            } else {
-                System.out.println("Erro ao obter o chamado selecionado.");
-            }
-        }
+        JList<String> listaChamados = (JList<String>) evt.getSource();
+        int indice = listaChamados.locationToIndex(evt.getPoint());
+        chamadoSelecionado = controle.selecionaChamado(indice, listaInformacoes, jListChamadosAbertos);
     }//GEN-LAST:event_jListChamadosAbertosMouseClicked
 
     private void btnReabrirChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReabrirChamadoMouseClicked
@@ -1122,15 +1047,9 @@ public class TelaAdm extends javax.swing.JFrame {
 
     private void btnResponderChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResponderChamadoMouseClicked
         if (chamadoSelecionado != null) {
-            // Abre uma caixa de diálogo de entrada de texto para a resposta
             String resposta = JOptionPane.showInputDialog(this, "Digite a resposta:", "Responder Chamado", JOptionPane.PLAIN_MESSAGE);
-
-            // Verifica se uma resposta foi fornecida (o usuário não clicou em Cancelar)
             if (resposta != null && !resposta.trim().isEmpty()) {
-                // Salva a resposta no chamado atual
                 chamadoSelecionado.setMsgSuporte(resposta.trim());
-
-                // Atualiza a lista ou qualquer outra ação necessária
                 System.out.println("Resposta salva: " + chamadoSelecionado.getMsgSuporte());
             } else {
                 System.out.println("Nenhuma resposta fornecida.");
@@ -1141,17 +1060,12 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResponderChamadoMouseClicked
 
     private void fieldBuscaChamadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBuscaChamadoKeyReleased
-        String busca = fieldBuscaChamado.getText().trim();
-        controle.buscarChamado(busca);
+        controle.buscarChamado(fieldBuscaChamado.getText().trim());
     }//GEN-LAST:event_fieldBuscaChamadoKeyReleased
 
     private void btnUploadFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUploadFotoMouseClicked
-        // Abre uma caixa de diálogo de entrada de texto para a URL
-        String urlPostagem = JOptionPane.showInputDialog(this, "Digite a URL da Postagem:", "Upload de Foto", JOptionPane.PLAIN_MESSAGE);
-
-        // Verifica se uma URL foi fornecida (o usuário não clicou em Cancelar)
+        urlPostagem = JOptionPane.showInputDialog(this, "Digite a URL da Postagem:", "Upload de Foto", JOptionPane.PLAIN_MESSAGE);
         if (urlPostagem != null && !urlPostagem.trim().isEmpty()) {
-            // Salva a URL em uma variável para uso posterior
             System.out.println("URL da Postagem: " + urlPostagem);
         } else {
             System.out.println("Nenhuma URL fornecida.");
@@ -1163,32 +1077,18 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldNoticiaActionPerformed
 
     private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
-        // Obtém o título da notícia do campo fieldTituloNoticia
-        String tituloNoticia = fieldTituloNoticia.getText();
 
-        // Obtém o conteúdo da notícia do campo fieldNoticia
-        String conteudoNoticia = fieldNoticia.getText();
-
-        // Verifica se o título e o conteúdo não estão vazios
-        if (!tituloNoticia.isEmpty() && !conteudoNoticia.isEmpty()) {
-            // Cria uma nova notícia com os dados fornecidos
-            Blog novaNoticia = new Blog();
-            novaNoticia.setTitulo(tituloNoticia);
-            novaNoticia.setTexto(conteudoNoticia);
-
-            // Adiciona a nova notícia à lista de postagens
-            listaInformacoes.adicionarPostagem(novaNoticia);
-            controle.atualizarLista(listaInformacoes);
-
-            // Exemplo de saída para verificar se a notícia foi criada corretamente
-            System.out.println("Nova notícia criada:\nTítulo: " + novaNoticia.getTitulo() + "\nConteúdo: " + novaNoticia.getTexto());
-
-            // Limpa os campos após criar a notícia
+        if (!fieldTituloNoticia.getText().isEmpty() && !fieldNoticia.getText().isEmpty() && btnEnviar.isEnabled()) {
+            controle.postarNoticia(fieldTituloNoticia.getText(), fieldNoticia.getText(), urlPostagem);
+            urlPostagem = "";
             fieldTituloNoticia.setText("");
             fieldNoticia.setText("");
         } else {
-            // Exibe uma mensagem de erro se algum campo estiver vazio
-            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            if (!btnEnviar.isEnabled()) {
+                JOptionPane.showMessageDialog(this, "Termine de Editar a notícia antes de fazer uma nova", "Erro", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
     }//GEN-LAST:event_btnEnviarMouseClicked
@@ -1196,69 +1096,53 @@ public class TelaAdm extends javax.swing.JFrame {
     private void btnApagarNotíciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApagarNotíciaMouseClicked
         if (boxListaDeNoticias.getSelectedIndex() != -1) {
             String tituloPostagemSelecionada = (String) boxListaDeNoticias.getSelectedItem();
-            for (Blog postagem : listaInformacoes.getPostagens()) {
-                if (postagem.getTitulo().equals(tituloPostagemSelecionada)) {
-                    listaInformacoes.removerPostagem(postagem);
-                    System.out.println("Postagem removida:\nTítulo: " + postagem.getTitulo() + "\nConteúdo: " + postagem.getTexto());
+            Blog noticiaSelecionada = controle.encontraNoticia(tituloPostagemSelecionada);
+            if (noticiaSelecionada != null) {
+                int opcao = JOptionPane.showOptionDialog(this, "Deseja realmente apagar a notícia: " + noticiaSelecionada.getTitulo() + "?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Sim", "Não"}, "Sim");
+                if (opcao == JOptionPane.YES_OPTION) {
+                    listaInformacoes.removerPostagem(noticiaSelecionada);
+                    System.out.println("Postagem removida:\nTítulo: " + noticiaSelecionada.getTitulo() + "\nConteúdo: " + noticiaSelecionada.getTexto());
                     controle.atualizarLista(listaInformacoes);
-                    return;
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Postagem não encontrada na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
-            JOptionPane.showMessageDialog(this, "Postagem não encontrada na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, selecione uma postagem para apagar.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnApagarNotíciaMouseClicked
 
     private void btnEditarNoticiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarNoticiaMouseClicked
-        // Verifica se o botão está com o texto "Editar"
         if (btnEditarNoticia.getText().equals("Editar")) {
-            // Verifica se há uma notícia selecionada no JComboBox
             if (boxListaDeNoticias.getSelectedIndex() != -1) {
-                // Obtém o título da notícia selecionada no JComboBox
                 String tituloNoticiaSelecionada = (String) boxListaDeNoticias.getSelectedItem();
-
-                // Percorre a lista de notícias para encontrar a notícia com o mesmo título
-                for (Blog noticia : listaInformacoes.getPostagens()) {
-                    if (noticia.getTitulo().equals(tituloNoticiaSelecionada)) {
-                        // Define o título da notícia no campo fieldTituloNoticia
-                        fieldTituloNoticia.setText(noticia.getTitulo());
-                        // Define o texto da notícia no campo fieldNoticia
-                        fieldNoticia.setText(noticia.getTexto());
-                        // Altera o texto do botão para "Salvar"
-                        btnEditarNoticia.setText("Salvar");
-                        return; // Encerra o loop após encontrar a notícia
-                    }
+                Blog noticiaSelecionada = controle.encontraNoticia(tituloNoticiaSelecionada);
+                if (noticiaSelecionada != null) {
+                    fieldTituloNoticia.setText(noticiaSelecionada.getTitulo());
+                    fieldNoticia.setText(noticiaSelecionada.getTexto());
+                    btnEditarNoticia.setText("Salvar");
+                    btnEnviar.setEnabled(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Notícia não encontrada na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
-                // Exibe uma mensagem de erro se a notícia não for encontrada
-                JOptionPane.showMessageDialog(this, "Notícia não encontrada na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
             } else {
-                // Exibe uma mensagem de erro se nenhuma notícia estiver selecionada
                 JOptionPane.showMessageDialog(this, "Por favor, selecione uma notícia para editar.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
-        } else if (btnEditarNoticia.getText().equals("Salvar")) { // Se o botão estiver com o texto "Salvar"
-            // Obtém o título da notícia a ser editada
+        } else if (btnEditarNoticia.getText().equals("Salvar")) {
             String tituloNoticiaEditar = fieldTituloNoticia.getText();
-
-            // Percorre a lista de notícias para encontrar a notícia com o mesmo título a ser editada
-            for (Blog noticia : listaInformacoes.getPostagens()) {
-                if (noticia.getTitulo().equals(tituloNoticiaEditar)) {
-                    // Atualiza o texto da notícia com o novo texto digitado
-                    noticia.setTexto(fieldNoticia.getText());
-                    // Altera o texto do botão de volta para "Editar"
-                    btnEditarNoticia.setText("Editar");
-                    // Limpa os campos de texto após salvar
-                    fieldTituloNoticia.setText("");
-                    fieldNoticia.setText("");
-                    // Exibe uma mensagem de sucesso
-                    JOptionPane.showMessageDialog(this, "Notícia salva com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    // Atualiza a lista de notícias
-                    controle.atualizarLista(listaInformacoes);
-                    return; // Encerra o loop após salvar a notícia
-                }
+            Blog noticiaEncontrada = controle.encontraNoticia(tituloNoticiaEditar);
+            if (noticiaEncontrada != null) {
+                noticiaEncontrada.setTexto(fieldNoticia.getText());
+                btnEditarNoticia.setText("Editar");
+                fieldTituloNoticia.setText("");
+                fieldNoticia.setText("");
+                urlPostagem = "";
+                JOptionPane.showMessageDialog(this, "Notícia salva com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                controle.atualizarLista(listaInformacoes);
+                btnEnviar.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao salvar: notícia não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
             }
-            // Exibe uma mensagem de erro se a notícia não for encontrada para edição
-            JOptionPane.showMessageDialog(this, "Erro ao salvar: notícia não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarNoticiaMouseClicked
 
@@ -1308,7 +1192,6 @@ public class TelaAdm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxTipos;
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnApagarCadastro;
-    private javax.swing.JButton btnApagarChamado;
     private javax.swing.JButton btnApagarNotícia;
     private javax.swing.JButton btnEditarCadastro;
     private javax.swing.JButton btnEditarNoticia;

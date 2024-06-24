@@ -10,26 +10,17 @@ public class Testes {
     public static void main(String[] args) {
         ListaInformacoes listaInformacoes = new ListaInformacoes();
 
-        // Gerar e cadastrar empresas listadas
+        // Gerar e cadastrar informacoes
         cadastrarEmpresas(listaInformacoes);
-
-        // Gerar e cadastrar chamados
         cadastrarChamados(listaInformacoes);
-
-        // Gerar e cadastrar postagens aleatórias
         cadastrarPostagensAleatorias(listaInformacoes);
 
         try {
-            // Gravar a lista de empresas em um arquivo
             ListaInformacoes.gravar("C:\\Users\\muril\\Desktop\\Nova pasta (2)\\banco.dat", listaInformacoes);
-
-            // Exibir a lista de empresas cadastradas
             System.out.println("Empresas cadastradas:");
             for (Empresa empresa : listaInformacoes.getEmpresas()) {
                 System.out.println("Nome: " + empresa.getNomeEmpresa() + " - E-mail: " + empresa.getEmailEmpresa());
             }
-
-            // Exibir a lista de chamados cadastrados
             System.out.println("\nChamados cadastrados:");
             for (Chamado chamado : listaInformacoes.getChamados()) {
                 System.out.println("Data: " + chamado.getDataInicio() + " - Responsável: " + chamado.getNomeResponsavel());
@@ -82,7 +73,6 @@ public class Testes {
             String descEmpresa = "Descrição da " + nomeEmpresa;
             String imgEmpresa = "imagem" + (i + 1) + ".jpg";
 
-            // Gerar aleatoriamente o tipo de empresa
             tipoEmpresa tipo = gerarTipoEmpresaAleatorio();
 
             Empresa empresa = new Empresa(
