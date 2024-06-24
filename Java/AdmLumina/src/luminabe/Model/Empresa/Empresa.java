@@ -226,5 +226,4 @@ public class Empresa implements Serializable {
         this.imgEmpresa = imgEmpresa;
     }
 
-    // METODOS CONCRETOS
 }

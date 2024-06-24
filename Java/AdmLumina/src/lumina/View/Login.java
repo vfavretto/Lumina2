@@ -1,18 +1,24 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package lumina.View;
 import javax.swing.JOptionPane;
 import lumina.Controller.*;
 
+/**
+ *
+ * @author agenciagwu
+ */
 public class Login extends javax.swing.JFrame {
-
-
-    Controller controle;
-    public Login() {
+Controller controle;
+ public Login() {
         initComponents();
         controle = new Controller();
     }
 
-       @SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -28,14 +34,11 @@ public class Login extends javax.swing.JFrame {
         txtAdm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(60, 60, 60));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setEnabled(false);
 
         Login.setBackground(new java.awt.Color(51, 51, 51));
 
         fieldUsuario.setBackground(new java.awt.Color(102, 102, 102));
+        fieldUsuario.setForeground(new java.awt.Color(255, 255, 255));
         fieldUsuario.setToolTipText("");
         fieldUsuario.setBorder(new javax.swing.border.MatteBorder(null));
         fieldUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -64,7 +67,7 @@ public class Login extends javax.swing.JFrame {
         panelVerdeDecorativo.setLayout(panelVerdeDecorativoLayout);
         panelVerdeDecorativoLayout.setHorizontalGroup(
             panelVerdeDecorativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         panelVerdeDecorativoLayout.setVerticalGroup(
             panelVerdeDecorativoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +87,6 @@ public class Login extends javax.swing.JFrame {
 
         fieldSenha.setBackground(new java.awt.Color(102, 102, 102));
         fieldSenha.setForeground(new java.awt.Color(255, 255, 255));
-        fieldSenha.setText("jPasswordField1");
         fieldSenha.setBorder(new javax.swing.border.MatteBorder(null));
 
         panelVerdeDecorativo1.setBackground(new java.awt.Color(0, 102, 102));
@@ -92,7 +94,7 @@ public class Login extends javax.swing.JFrame {
         txtAdm.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         txtAdm.setForeground(new java.awt.Color(255, 255, 255));
         txtAdm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtAdm.setText("Adminstrador Lumina");
+        txtAdm.setText("Administrador Lumina");
 
         javax.swing.GroupLayout panelVerdeDecorativo1Layout = new javax.swing.GroupLayout(panelVerdeDecorativo1);
         panelVerdeDecorativo1.setLayout(panelVerdeDecorativo1Layout);
@@ -136,14 +138,16 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtLogin)
                 .addGap(18, 18, 18)
-                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUser))
-                .addGap(18, 18, 18)
+                .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtUser)
+                    .addGroup(LoginLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(fieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSenha)
-                    .addComponent(fieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                    .addComponent(fieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panelVerdeDecorativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -162,8 +166,6 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getAccessibleContext().setAccessibleDescription("");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -180,10 +182,12 @@ public class Login extends javax.swing.JFrame {
         } else {
             // Exibe uma mensagem de erro
             JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos");
-    }
-
+        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -206,6 +210,7 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

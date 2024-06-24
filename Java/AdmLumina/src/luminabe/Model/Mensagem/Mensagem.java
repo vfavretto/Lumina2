@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package luminabe.Model.Mensagem;
 
 import luminabe.Model.Empresa.Empresa;
 
-/**
- *
- * @author victor
- */
 public class Mensagem {
     
     //Atributos
