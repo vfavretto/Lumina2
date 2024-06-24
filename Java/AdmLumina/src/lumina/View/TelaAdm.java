@@ -56,15 +56,17 @@ public class TelaAdm extends javax.swing.JFrame {
         painelGerBlog = new javax.swing.JPanel();
         panelVerdeDecorativo1 = new javax.swing.JPanel();
         txtGerBlog = new javax.swing.JLabel();
-        fieldNoticia = new javax.swing.JTextField();
+        fieldTituloNoticia = new javax.swing.JTextField();
         txtInserirNoticia = new javax.swing.JLabel();
-        txtBlog = new javax.swing.JLabel();
+        txtTituloBlog = new javax.swing.JLabel();
         btnUploadFoto = new javax.swing.JButton();
         btnEnviar = new javax.swing.JButton();
         txtNoticiasPostadas = new javax.swing.JLabel();
         boxListaDeNoticias = new javax.swing.JComboBox<>();
         btnEditarNoticia = new javax.swing.JButton();
         btnApagarNotícia = new javax.swing.JButton();
+        txtBlog1 = new javax.swing.JLabel();
+        fieldNoticia1 = new javax.swing.JTextField();
         painelGerEmpresa = new javax.swing.JPanel();
         panelVerdeDecorativo3 = new javax.swing.JPanel();
         txtGerEmpresa = new javax.swing.JLabel();
@@ -343,16 +345,16 @@ public class TelaAdm extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        fieldNoticia.setBackground(new java.awt.Color(89, 89, 89));
-        fieldNoticia.setForeground(new java.awt.Color(204, 204, 204));
-        fieldNoticia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        fieldNoticia.setToolTipText("");
-        fieldNoticia.setBorder(new javax.swing.border.MatteBorder(null));
-        fieldNoticia.setCaretColor(new java.awt.Color(204, 204, 204));
-        fieldNoticia.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        fieldNoticia.addActionListener(new java.awt.event.ActionListener() {
+        fieldTituloNoticia.setBackground(new java.awt.Color(89, 89, 89));
+        fieldTituloNoticia.setForeground(new java.awt.Color(255, 255, 255));
+        fieldTituloNoticia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        fieldTituloNoticia.setToolTipText("");
+        fieldTituloNoticia.setBorder(new javax.swing.border.MatteBorder(null));
+        fieldTituloNoticia.setCaretColor(new java.awt.Color(204, 204, 204));
+        fieldTituloNoticia.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        fieldTituloNoticia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldNoticiaActionPerformed(evt);
+                fieldTituloNoticiaActionPerformed(evt);
             }
         });
 
@@ -361,9 +363,9 @@ public class TelaAdm extends javax.swing.JFrame {
         txtInserirNoticia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtInserirNoticia.setText("Inserir notícia");
 
-        txtBlog.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtBlog.setForeground(new java.awt.Color(255, 255, 255));
-        txtBlog.setText("Escreva a notícia aqui:");
+        txtTituloBlog.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTituloBlog.setForeground(new java.awt.Color(255, 255, 255));
+        txtTituloBlog.setText("Título da notícia");
 
         btnUploadFoto.setBackground(new java.awt.Color(0, 102, 102));
         btnUploadFoto.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
@@ -428,6 +430,23 @@ public class TelaAdm extends javax.swing.JFrame {
             }
         });
 
+        txtBlog1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBlog1.setForeground(new java.awt.Color(255, 255, 255));
+        txtBlog1.setText("Escreva a notícia aqui:");
+
+        fieldNoticia1.setBackground(new java.awt.Color(89, 89, 89));
+        fieldNoticia1.setForeground(new java.awt.Color(255, 255, 255));
+        fieldNoticia1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        fieldNoticia1.setToolTipText("");
+        fieldNoticia1.setBorder(new javax.swing.border.MatteBorder(null));
+        fieldNoticia1.setCaretColor(new java.awt.Color(204, 204, 204));
+        fieldNoticia1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        fieldNoticia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNoticia1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelGerBlogLayout = new javax.swing.GroupLayout(painelGerBlog);
         painelGerBlog.setLayout(painelGerBlogLayout);
         painelGerBlogLayout.setHorizontalGroup(
@@ -440,19 +459,22 @@ public class TelaAdm extends javax.swing.JFrame {
                         .addComponent(txtInserirNoticia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelGerBlogLayout.createSequentialGroup()
                         .addContainerGap(26, Short.MAX_VALUE)
-                        .addGroup(painelGerBlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(boxListaDeNoticias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtBlog, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldNoticia, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelGerBlogLayout.createSequentialGroup()
-                                .addComponent(btnUploadFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtNoticiasPostadas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelGerBlogLayout.createSequentialGroup()
-                                .addComponent(btnApagarNotícia, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEditarNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(painelGerBlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBlog1)
+                            .addGroup(painelGerBlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(boxListaDeNoticias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtTituloBlog, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(fieldTituloNoticia, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelGerBlogLayout.createSequentialGroup()
+                                    .addComponent(btnUploadFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNoticiasPostadas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelGerBlogLayout.createSequentialGroup()
+                                    .addComponent(btnApagarNotícia, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEditarNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(fieldNoticia1, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(0, 16, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -462,15 +484,19 @@ public class TelaAdm extends javax.swing.JFrame {
                 .addComponent(panelVerdeDecorativo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtInserirNoticia)
-                .addGap(11, 11, 11)
-                .addComponent(txtBlog)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTituloBlog)
+                .addGap(3, 3, 3)
+                .addComponent(fieldTituloNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBlog1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fieldNoticia1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelGerBlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUploadFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addComponent(txtNoticiasPostadas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boxListaDeNoticias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -845,9 +871,9 @@ public class TelaAdm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fieldNoticiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNoticiaActionPerformed
+    private void fieldTituloNoticiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTituloNoticiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldNoticiaActionPerformed
+    }//GEN-LAST:event_fieldTituloNoticiaActionPerformed
 
     private void btnUploadFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadFotoActionPerformed
         // TODO add your handling code here:
@@ -1108,6 +1134,10 @@ public class TelaAdm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnUploadFotoMouseClicked
 
+    private void fieldNoticia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNoticia1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNoticia1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1171,9 +1201,10 @@ public class TelaAdm extends javax.swing.JFrame {
     private javax.swing.JTextField fieldBuscaChamado;
     private javax.swing.JTextField fieldEmailEmp;
     private javax.swing.JTextField fieldNomeEmp;
-    private javax.swing.JTextField fieldNoticia;
+    private javax.swing.JTextField fieldNoticia1;
     private javax.swing.JTextField fieldSenhaGer;
     private javax.swing.JTextField fieldTelEmp;
+    private javax.swing.JTextField fieldTituloNoticia;
     private javax.swing.JList<String> jListChamadosAbertos;
     private javax.swing.JList<String> jListEmpresasCadastradas;
     private javax.swing.JScrollPane jScrollChamadosAbertos;
@@ -1188,7 +1219,7 @@ public class TelaAdm extends javax.swing.JFrame {
     private javax.swing.JPanel panelVerdeDecorativo2;
     private javax.swing.JPanel panelVerdeDecorativo3;
     private javax.swing.JLabel txtAdm;
-    private javax.swing.JLabel txtBlog;
+    private javax.swing.JLabel txtBlog1;
     private javax.swing.JLabel txtBusca;
     private javax.swing.JLabel txtBuscaChamados;
     private javax.swing.JLabel txtChamados;
@@ -1204,6 +1235,7 @@ public class TelaAdm extends javax.swing.JFrame {
     private javax.swing.JLabel txtSenhaGer;
     private javax.swing.JLabel txtTelEmp;
     private javax.swing.JLabel txtTipo;
+    private javax.swing.JLabel txtTituloBlog;
     // End of variables declaration//GEN-END:variables
 
 }
