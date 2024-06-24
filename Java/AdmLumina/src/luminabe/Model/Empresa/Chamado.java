@@ -7,12 +7,7 @@ import java.time.format.DateTimeFormatter;
 public class Chamado implements Serializable {
 
     //Atributos
-    public void setMsgEmpresa(String msgEmpresa) {
-        this.msgEmpresa = msgEmpresa;
-    }
-
     private Empresa empresa;
-
     private statusChamado statusChamado;
     private String nomeResponsavel;
     private String dataInicio;
@@ -70,6 +65,10 @@ public class Chamado implements Serializable {
 
     public void setDataInicio(String dataInicio) {
         this.dataInicio = dataInicio;
+    }
+
+    public void setMsgEmpresa(String msgEmpresa) {
+        this.msgEmpresa = msgEmpresa;
     }
 
     public void setMsgSuporte(String msgSuporte) {

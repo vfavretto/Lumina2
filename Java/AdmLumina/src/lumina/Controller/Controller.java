@@ -3,6 +3,7 @@ package lumina.Controller;
 import javax.swing.*;
 import luminabe.Model.Empresa.*;
 import luminabe.Model.Admnistrador.Adm;
+import luminabe.Model.Admnistrador.Blog;
 
 public class Controller {
 
@@ -15,19 +16,23 @@ public class Controller {
     private JList<String> jListChamadosAbertos;
     private DefaultComboBoxModel<String> chamadosFinalizadosModel;
     private JComboBox<String> boxChamadosFinalizados;
+    private DefaultComboBoxModel<String> noticiasModel;
+    private JComboBox<String> boxListaDeNoticias;
 
     public Controller() {
 
     }
 
-    public Controller(ListaInformacoes listaInformacoes, DefaultListModel<String> empresasModel, DefaultListModel<String> chamadosModel, JList<String> jListEmpresasCadastradas, JList<String> jListChamadosAbertos, JComboBox<String> boxChamadosFinalizados) {
+    public Controller(ListaInformacoes listaInformacoes, DefaultListModel<String> empresasModel, DefaultListModel<String> chamadosModel, JList<String> jListEmpresasCadastradas, JList<String> jListChamadosAbertos, JComboBox<String> boxChamadosFinalizados, JComboBox<String> boxListaDeNoticias) {
         this.listaInformacoes = listaInformacoes;
         this.empresasModel = empresasModel;
         this.chamadosModel = chamadosModel;
         this.jListEmpresasCadastradas = jListEmpresasCadastradas;
         this.jListChamadosAbertos = jListChamadosAbertos;
         this.boxChamadosFinalizados = boxChamadosFinalizados;
+        this.boxListaDeNoticias = boxListaDeNoticias;
         this.chamadosFinalizadosModel = new DefaultComboBoxModel<>();
+        this.noticiasModel = new DefaultComboBoxModel<>();
     }
 
     public boolean login(String usuario, String senha) {
@@ -73,14 +78,15 @@ public class Controller {
     }
 
     public void atualizarLista(ListaInformacoes listaInformacoes) {
-        this.atualizarLista(listaInformacoes, chamadosFinalizadosModel);
+        this.atualizarLista(listaInformacoes, chamadosFinalizadosModel, noticiasModel);
     }
 
-    public void atualizarLista(ListaInformacoes listaInformacoes, DefaultComboBoxModel<String> chamadosFinalizadosModel) {
+    public void atualizarLista(ListaInformacoes listaInformacoes, DefaultComboBoxModel<String> chamadosFinalizadosModel, DefaultComboBoxModel<String> noticiasModel) {
         this.listaInformacoes = listaInformacoes;
         this.empresasModel.clear();
         this.chamadosModel.clear();
         this.chamadosFinalizadosModel.removeAllElements();
+        this.noticiasModel.removeAllElements();
 
         if (listaInformacoes != null) {
             for (Empresa empresa : listaInformacoes.getEmpresas()) {
@@ -99,6 +105,11 @@ public class Controller {
             }
             this.jListChamadosAbertos.setModel(chamadosModel);
             this.boxChamadosFinalizados.setModel(chamadosFinalizadosModel); // Define o modelo do JComboBox
+
+            for (Blog blog : listaInformacoes.getPostagens()) {
+                this.noticiasModel.addElement(blog.getTitulo());
+            }
+            this.boxListaDeNoticias.setModel(noticiasModel); // Define o modelo do JComboBox
         } else {
             System.out.println("Erro ao carregar a lista de empresas.");
         }
@@ -131,36 +142,36 @@ public class Controller {
             System.out.println("Erro: índice do chamado inválido.");
         }
     }
-    
-public void reabrirChamado(String nomeResponsavel) {
-    if (listaInformacoes != null && !listaInformacoes.getChamados().isEmpty()) {
-        for (Chamado chamado : listaInformacoes.getChamados()) {
-            String nomeChamado = chamado.getNomeResponsavel();
-            int indiceSeparador = nomeResponsavel.indexOf(" - ");
-            if (indiceSeparador != -1) {
-                String nomeSemData = nomeResponsavel.substring(indiceSeparador + 3); // +3 para ignorar " - "
-                if (nomeChamado.equalsIgnoreCase(nomeSemData)) {
-                    chamado.setStatusChamado(statusChamado.ABERTO);
-                    atualizarLista(listaInformacoes);
-                    System.out.println("Chamado reaberto para: " + nomeResponsavel);
-                    return; // Encerra o método após encontrar o chamado correspondente
+
+    public void reabrirChamado(String nomeResponsavel) {
+        if (listaInformacoes != null && !listaInformacoes.getChamados().isEmpty()) {
+            for (Chamado chamado : listaInformacoes.getChamados()) {
+                String nomeChamado = chamado.getNomeResponsavel();
+                int indiceSeparador = nomeResponsavel.indexOf(" - ");
+                if (indiceSeparador != -1) {
+                    String nomeSemData = nomeResponsavel.substring(indiceSeparador + 3); // +3 para ignorar " - "
+                    if (nomeChamado.equalsIgnoreCase(nomeSemData)) {
+                        chamado.setStatusChamado(statusChamado.ABERTO);
+                        atualizarLista(listaInformacoes);
+                        System.out.println("Chamado reaberto para: " + nomeResponsavel);
+                        return; // Encerra o método após encontrar o chamado correspondente
+                    }
+                } else {
+                    System.out.println("Formato de chamado inválido: " + nomeResponsavel);
                 }
-            } else {
-                System.out.println("Formato de chamado inválido: " + nomeResponsavel);
             }
+            System.out.println("Chamado não encontrado para: " + nomeResponsavel);
+        } else {
+            System.out.println("Lista de chamados vazia ou nula.");
         }
-        System.out.println("Chamado não encontrado para: " + nomeResponsavel);
-    } else {
-        System.out.println("Lista de chamados vazia ou nula.");
     }
-}
 
     public void buscarChamado(String busca) {
         if (busca != null && !busca.trim().isEmpty()) {
             DefaultListModel<String> chamadosFiltrados = new DefaultListModel<>();
             for (Chamado chamado : listaInformacoes.getChamados()) {
-                if (chamado.getStatusChamado() == statusChamado.ABERTO &&
-                    chamado.getNomeResponsavel().toLowerCase().contains(busca.toLowerCase())) {
+                if (chamado.getStatusChamado() == statusChamado.ABERTO
+                        && chamado.getNomeResponsavel().toLowerCase().contains(busca.toLowerCase())) {
                     String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
                     chamadosFiltrados.addElement(infoChamado);
                 }
@@ -170,7 +181,4 @@ public void reabrirChamado(String nomeResponsavel) {
             atualizarLista(listaInformacoes);
         }
     }
-
-
 }
-

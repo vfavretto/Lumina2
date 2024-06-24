@@ -26,7 +26,7 @@ public class TelaAdm extends javax.swing.JFrame {
         empresasModel = new DefaultListModel<>();
         chamadosModel = new DefaultListModel<>();
         chamadosFinalizadosModel = new DefaultComboBoxModel<>();
-        controle = new Controller(listaInformacoes, empresasModel, chamadosModel, jListEmpresasCadastradas, jListChamadosAbertos, boxChamadosFinalizados);
+        controle = new Controller(listaInformacoes, empresasModel, chamadosModel, jListEmpresasCadastradas, jListChamadosAbertos, boxChamadosFinalizados, boxListaDeNoticias);
         controle.atualizarLista(listaInformacoes);
         controle.limparCampos(fieldNomeEmp, fieldEmailEmp, fieldTelEmp, fieldSenhaGer, boxTipos);
 
@@ -370,6 +370,11 @@ public class TelaAdm extends javax.swing.JFrame {
         btnUploadFoto.setForeground(new java.awt.Color(255, 255, 255));
         btnUploadFoto.setText("Upload de foto");
         btnUploadFoto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUploadFoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUploadFotoMouseClicked(evt);
+            }
+        });
         btnUploadFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUploadFotoActionPerformed(evt);
@@ -1069,30 +1074,29 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_jListChamadosAbertosMouseClicked
 
     private void btnReabrirChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReabrirChamadoMouseClicked
-         String nomeResponsavelSelecionado = (String) boxChamadosFinalizados.getSelectedItem();
-         System.out.println(nomeResponsavelSelecionado);
-         controle.reabrirChamado(nomeResponsavelSelecionado);
-    
+        String nomeResponsavelSelecionado = (String) boxChamadosFinalizados.getSelectedItem();
+        System.out.println(nomeResponsavelSelecionado);
+        controle.reabrirChamado(nomeResponsavelSelecionado);
     }//GEN-LAST:event_btnReabrirChamadoMouseClicked
 
     private void btnResponderChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResponderChamadoMouseClicked
-         if (chamadoSelecionado != null) {
-        // Abre uma caixa de diálogo de entrada de texto para a resposta
-        String resposta = JOptionPane.showInputDialog(this, "Digite a resposta:", "Responder Chamado", JOptionPane.PLAIN_MESSAGE);
+        if (chamadoSelecionado != null) {
+            // Abre uma caixa de diálogo de entrada de texto para a resposta
+            String resposta = JOptionPane.showInputDialog(this, "Digite a resposta:", "Responder Chamado", JOptionPane.PLAIN_MESSAGE);
 
-        // Verifica se uma resposta foi fornecida (o usuário não clicou em Cancelar)
-        if (resposta != null && !resposta.trim().isEmpty()) {
-            // Salva a resposta no chamado atual
-            chamadoSelecionado.setMsgSuporte(resposta.trim());
+            // Verifica se uma resposta foi fornecida (o usuário não clicou em Cancelar)
+            if (resposta != null && !resposta.trim().isEmpty()) {
+                // Salva a resposta no chamado atual
+                chamadoSelecionado.setMsgSuporte(resposta.trim());
 
-            // Atualiza a lista ou qualquer outra ação necessária
-            System.out.println("Resposta salva: " + chamadoSelecionado.getMsgSuporte());
+                // Atualiza a lista ou qualquer outra ação necessária
+                System.out.println("Resposta salva: " + chamadoSelecionado.getMsgSuporte());
+            } else {
+                System.out.println("Nenhuma resposta fornecida.");
+            }
         } else {
-            System.out.println("Nenhuma resposta fornecida.");
+            System.out.println("Nenhum chamado selecionado.");
         }
-    } else {
-        System.out.println("Nenhum chamado selecionado.");
-    }
     }//GEN-LAST:event_btnResponderChamadoMouseClicked
 
     private void fieldBuscaChamadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBuscaChamadoKeyReleased
@@ -1100,10 +1104,14 @@ public class TelaAdm extends javax.swing.JFrame {
         controle.buscarChamado(busca);
     }//GEN-LAST:event_fieldBuscaChamadoKeyReleased
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    private void btnUploadFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUploadFotoMouseClicked
+
+    }//GEN-LAST:event_btnUploadFotoMouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1115,27 +1123,23 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaAdm.class  
+            java.util.logging.Logger.getLogger(TelaAdm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaAdm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaAdm.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaAdm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaAdm.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaAdm.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaAdm.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

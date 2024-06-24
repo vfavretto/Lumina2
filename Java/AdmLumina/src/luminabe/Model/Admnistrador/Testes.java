@@ -16,9 +16,12 @@ public class Testes {
         // Gerar e cadastrar chamados
         cadastrarChamados(listaInformacoes);
 
+        // Gerar e cadastrar postagens aleatórias
+        cadastrarPostagensAleatorias(listaInformacoes);
+
         try {
             // Gravar a lista de empresas em um arquivo
-            ListaInformacoes.gravar("C:\\Users\\agenciagwu\\Documents\\TesteLumina\\empresas.dat", listaInformacoes);
+            ListaInformacoes.gravar("C:\\Users\\muril\\Desktop\\Nova pasta (2)\\banco.dat", listaInformacoes);
 
             // Exibir a lista de empresas cadastradas
             System.out.println("Empresas cadastradas:");
@@ -137,5 +140,34 @@ public class Testes {
         Random random = new Random();
         int index = random.nextInt(tipoEmpresa.values().length);
         return tipoEmpresa.values()[index];
+    }
+
+    // Método para cadastrar postagens aleatórias
+    private static void cadastrarPostagensAleatorias(ListaInformacoes listaInformacoes) {
+        String[] titulos = {
+            "Primeiro Post", "Sustentabilidade em Ação", "Inovações Verdes", "Energia Limpa", "Reciclagem Criativa"
+        };
+
+        String[] textos = {
+            "Este é o conteúdo do primeiro post.", "Explorando novas formas de sustentabilidade.",
+            "As inovações verdes que estão mudando o mundo.", "Tudo sobre energia limpa e renovável.",
+            "Ideias criativas para reciclagem e reuso."
+        };
+
+        String[] urlsImagens = {
+            "http://example.com/imagem1.jpg", "http://example.com/imagem2.jpg", "http://example.com/imagem3.jpg",
+            "http://example.com/imagem4.jpg", "http://example.com/imagem5.jpg"
+        };
+
+        Random random = new Random();
+
+        for (int i = 0; i < 5; i++) {
+            String titulo = titulos[random.nextInt(titulos.length)];
+            String texto = textos[random.nextInt(textos.length)];
+            String urlImagem = urlsImagens[random.nextInt(urlsImagens.length)];
+
+            Blog postagem = new Blog(titulo, texto, urlImagem);
+            listaInformacoes.adicionarPostagem(postagem);
+        }
     }
 }
