@@ -538,7 +538,7 @@
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="btnEditarNoticia" min="-2" pref="106" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="fieldNoticia1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="fieldNoticia" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
@@ -561,7 +561,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtBlog1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldNoticia1" min="-2" pref="108" max="-2" attributes="0"/>
+                      <Component id="fieldNoticia" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnUploadFoto" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
@@ -715,6 +715,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEnviarMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnviarActionPerformed"/>
               </Events>
             </Component>
@@ -801,6 +802,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnApagarNot&#xed;ciaMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnApagarNot&#xed;ciaActionPerformed"/>
               </Events>
             </Component>
@@ -815,7 +817,7 @@
                 <Property name="text" type="java.lang.String" value="Escreva a not&#xed;cia aqui:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="fieldNoticia1">
+            <Component class="javax.swing.JTextField" name="fieldNoticia">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="59" green="59" red="59" type="rgb"/>
@@ -838,7 +840,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldNoticia1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldNoticiaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

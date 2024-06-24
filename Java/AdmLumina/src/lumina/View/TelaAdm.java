@@ -3,8 +3,8 @@ package lumina.View;
 import javax.swing.*;
 import java.io.*;
 import lumina.Controller.*;
-import luminabe.Model.Empresa.ListaInformacoes;
 import luminabe.Model.Empresa.*;
+import luminabe.Model.Admnistrador.Blog;
 
 public class TelaAdm extends javax.swing.JFrame {
 
@@ -66,7 +66,7 @@ public class TelaAdm extends javax.swing.JFrame {
         btnEditarNoticia = new javax.swing.JButton();
         btnApagarNotícia = new javax.swing.JButton();
         txtBlog1 = new javax.swing.JLabel();
-        fieldNoticia1 = new javax.swing.JTextField();
+        fieldNoticia = new javax.swing.JTextField();
         painelGerEmpresa = new javax.swing.JPanel();
         panelVerdeDecorativo3 = new javax.swing.JPanel();
         txtGerEmpresa = new javax.swing.JLabel();
@@ -388,6 +388,11 @@ public class TelaAdm extends javax.swing.JFrame {
         btnEnviar.setForeground(new java.awt.Color(255, 255, 255));
         btnEnviar.setText("Enviar");
         btnEnviar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEnviarMouseClicked(evt);
+            }
+        });
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnviarActionPerformed(evt);
@@ -424,6 +429,11 @@ public class TelaAdm extends javax.swing.JFrame {
         btnApagarNotícia.setText("Apagar");
         btnApagarNotícia.setToolTipText("");
         btnApagarNotícia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnApagarNotícia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnApagarNotíciaMouseClicked(evt);
+            }
+        });
         btnApagarNotícia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnApagarNotíciaActionPerformed(evt);
@@ -434,16 +444,16 @@ public class TelaAdm extends javax.swing.JFrame {
         txtBlog1.setForeground(new java.awt.Color(255, 255, 255));
         txtBlog1.setText("Escreva a notícia aqui:");
 
-        fieldNoticia1.setBackground(new java.awt.Color(89, 89, 89));
-        fieldNoticia1.setForeground(new java.awt.Color(255, 255, 255));
-        fieldNoticia1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        fieldNoticia1.setToolTipText("");
-        fieldNoticia1.setBorder(new javax.swing.border.MatteBorder(null));
-        fieldNoticia1.setCaretColor(new java.awt.Color(204, 204, 204));
-        fieldNoticia1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        fieldNoticia1.addActionListener(new java.awt.event.ActionListener() {
+        fieldNoticia.setBackground(new java.awt.Color(89, 89, 89));
+        fieldNoticia.setForeground(new java.awt.Color(255, 255, 255));
+        fieldNoticia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        fieldNoticia.setToolTipText("");
+        fieldNoticia.setBorder(new javax.swing.border.MatteBorder(null));
+        fieldNoticia.setCaretColor(new java.awt.Color(204, 204, 204));
+        fieldNoticia.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        fieldNoticia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldNoticia1ActionPerformed(evt);
+                fieldNoticiaActionPerformed(evt);
             }
         });
 
@@ -474,7 +484,7 @@ public class TelaAdm extends javax.swing.JFrame {
                                     .addComponent(btnApagarNotícia, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnEditarNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(fieldNoticia1, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addComponent(fieldNoticia, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(0, 16, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -491,7 +501,7 @@ public class TelaAdm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBlog1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldNoticia1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fieldNoticia, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelGerBlogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUploadFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1131,12 +1141,69 @@ public class TelaAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldBuscaChamadoKeyReleased
 
     private void btnUploadFotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUploadFotoMouseClicked
+        // Abre uma caixa de diálogo de entrada de texto para a URL
+        String urlPostagem = JOptionPane.showInputDialog(this, "Digite a URL da Postagem:", "Upload de Foto", JOptionPane.PLAIN_MESSAGE);
 
+        // Verifica se uma URL foi fornecida (o usuário não clicou em Cancelar)
+        if (urlPostagem != null && !urlPostagem.trim().isEmpty()) {
+            // Salva a URL em uma variável para uso posterior
+            System.out.println("URL da Postagem: " + urlPostagem);
+        } else {
+            System.out.println("Nenhuma URL fornecida.");
+        }
     }//GEN-LAST:event_btnUploadFotoMouseClicked
 
-    private void fieldNoticia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNoticia1ActionPerformed
+    private void fieldNoticiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNoticiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldNoticia1ActionPerformed
+    }//GEN-LAST:event_fieldNoticiaActionPerformed
+
+    private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
+        // Obtém o título da notícia do campo fieldTituloNoticia
+        String tituloNoticia = fieldTituloNoticia.getText();
+
+        // Obtém o conteúdo da notícia do campo fieldNoticia
+        String conteudoNoticia = fieldNoticia.getText();
+
+        // Verifica se o título e o conteúdo não estão vazios
+        if (!tituloNoticia.isEmpty() && !conteudoNoticia.isEmpty()) {
+            // Cria uma nova notícia com os dados fornecidos
+            Blog novaNoticia = new Blog();
+            novaNoticia.setTitulo(tituloNoticia);
+            novaNoticia.setTexto(conteudoNoticia);
+
+            // Adiciona a nova notícia à lista de postagens
+            listaInformacoes.adicionarPostagem(novaNoticia);
+            controle.atualizarLista(listaInformacoes);
+
+            // Exemplo de saída para verificar se a notícia foi criada corretamente
+            System.out.println("Nova notícia criada:\nTítulo: " + novaNoticia.getTitulo() + "\nConteúdo: " + novaNoticia.getTexto());
+
+            // Limpa os campos após criar a notícia
+            fieldTituloNoticia.setText("");
+            fieldNoticia.setText("");
+        } else {
+            // Exibe uma mensagem de erro se algum campo estiver vazio
+            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnEnviarMouseClicked
+
+    private void btnApagarNotíciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApagarNotíciaMouseClicked
+        if (boxListaDeNoticias.getSelectedIndex() != -1) {
+            String tituloPostagemSelecionada = (String) boxListaDeNoticias.getSelectedItem();
+            for (Blog postagem : listaInformacoes.getPostagens()) {
+                if (postagem.getTitulo().equals(tituloPostagemSelecionada)) {
+                    listaInformacoes.removerPostagem(postagem);
+                    System.out.println("Postagem removida:\nTítulo: " + postagem.getTitulo() + "\nConteúdo: " + postagem.getTexto());
+                    controle.atualizarLista(listaInformacoes);
+                    return; 
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Postagem não encontrada na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione uma postagem para apagar.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnApagarNotíciaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1201,7 +1268,7 @@ public class TelaAdm extends javax.swing.JFrame {
     private javax.swing.JTextField fieldBuscaChamado;
     private javax.swing.JTextField fieldEmailEmp;
     private javax.swing.JTextField fieldNomeEmp;
-    private javax.swing.JTextField fieldNoticia1;
+    private javax.swing.JTextField fieldNoticia;
     private javax.swing.JTextField fieldSenhaGer;
     private javax.swing.JTextField fieldTelEmp;
     private javax.swing.JTextField fieldTituloNoticia;
