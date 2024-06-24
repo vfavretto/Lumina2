@@ -152,6 +152,11 @@ public class TelaAdm extends javax.swing.JFrame {
         btnResponderChamado.setForeground(new java.awt.Color(255, 255, 255));
         btnResponderChamado.setText("Responder");
         btnResponderChamado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnResponderChamado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnResponderChamadoMouseClicked(evt);
+            }
+        });
         btnResponderChamado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResponderChamadoActionPerformed(evt);
@@ -243,6 +248,11 @@ public class TelaAdm extends javax.swing.JFrame {
 
         fieldBuscaChamado.setBackground(new java.awt.Color(60, 60, 60));
         fieldBuscaChamado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50)));
+        fieldBuscaChamado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fieldBuscaChamadoKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelSuporteLayout = new javax.swing.GroupLayout(painelSuporte);
         painelSuporte.setLayout(painelSuporteLayout);
@@ -1064,6 +1074,31 @@ public class TelaAdm extends javax.swing.JFrame {
          controle.reabrirChamado(nomeResponsavelSelecionado);
     
     }//GEN-LAST:event_btnReabrirChamadoMouseClicked
+
+    private void btnResponderChamadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResponderChamadoMouseClicked
+         if (chamadoSelecionado != null) {
+        // Abre uma caixa de diálogo de entrada de texto para a resposta
+        String resposta = JOptionPane.showInputDialog(this, "Digite a resposta:", "Responder Chamado", JOptionPane.PLAIN_MESSAGE);
+
+        // Verifica se uma resposta foi fornecida (o usuário não clicou em Cancelar)
+        if (resposta != null && !resposta.trim().isEmpty()) {
+            // Salva a resposta no chamado atual
+            chamadoSelecionado.setMsgSuporte(resposta.trim());
+
+            // Atualiza a lista ou qualquer outra ação necessária
+            System.out.println("Resposta salva: " + chamadoSelecionado.getMsgSuporte());
+        } else {
+            System.out.println("Nenhuma resposta fornecida.");
+        }
+    } else {
+        System.out.println("Nenhum chamado selecionado.");
+    }
+    }//GEN-LAST:event_btnResponderChamadoMouseClicked
+
+    private void fieldBuscaChamadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBuscaChamadoKeyReleased
+        String busca = fieldBuscaChamado.getText().trim();
+        controle.buscarChamado(busca);
+    }//GEN-LAST:event_fieldBuscaChamadoKeyReleased
 
 /**
  * @param args the command line arguments

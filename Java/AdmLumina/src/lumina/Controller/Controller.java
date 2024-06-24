@@ -155,7 +155,21 @@ public void reabrirChamado(String nomeResponsavel) {
     }
 }
 
-
+    public void buscarChamado(String busca) {
+        if (busca != null && !busca.trim().isEmpty()) {
+            DefaultListModel<String> chamadosFiltrados = new DefaultListModel<>();
+            for (Chamado chamado : listaInformacoes.getChamados()) {
+                if (chamado.getStatusChamado() == statusChamado.ABERTO &&
+                    chamado.getNomeResponsavel().toLowerCase().contains(busca.toLowerCase())) {
+                    String infoChamado = chamado.getDataInicio() + " - " + chamado.getNomeResponsavel();
+                    chamadosFiltrados.addElement(infoChamado);
+                }
+            }
+            jListChamadosAbertos.setModel(chamadosFiltrados);
+        } else {
+            atualizarLista(listaInformacoes);
+        }
+    }
 
 
 }
