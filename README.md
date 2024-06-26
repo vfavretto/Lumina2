@@ -3,6 +3,8 @@
 
 Projeto integrador da FATEC - Votorantim
 
+![Logo](https://i.imgur.com/uUU6gqx.png)
+
 
 ## Rodando localmente o site
 
@@ -50,7 +52,4 @@ Inicie o servidor
 - [@julinhaarte](https://github.com/julinhaarte)
 - [@ablazd](https://github.com/ablazd)
 - [@felipe6san](https://github.com/felipe6san)
-
-
-![Logo](https://i.imgur.com/uUU6gqx.png)
 
