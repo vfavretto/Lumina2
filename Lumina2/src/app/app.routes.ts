@@ -1,27 +1,18 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { BlogComponent } from './blog/blog.component';
-import { ParceirosComponent } from './parceiros/parceiros.component';
-import { SobreComponent } from './sobre/sobre.component';
-import { PerfilComponent } from './perfil/perfil.component';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { PartnersComponent } from './pages/partners/partners.component';
+import { AutenticarGuard } from './autenticar.guard';
 
 export const routes: Routes = [
-     { path: '', component: HomeComponent },
-     { path: 'home', component: HomeComponent },
-     {path: 'login', component: LoginComponent},
-     {path: 'blog', component: BlogComponent},
-     {path: 'parceiros', component: ParceirosComponent},
-     {path: 'sobre', component: SobreComponent},
-     {path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
-     { path: '**', component: HomeComponent },
+    { path: '', component: LoginComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'home', component: HomeComponent },
+    { path: 'blog', component: BlogComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'profile', component: ProfileComponent, canActivate: [AutenticarGuard] },
+    { path: 'partners', component: PartnersComponent },
 ];
-@NgModule({
-     imports: [RouterModule.forRoot(routes)],
-     exports: [RouterModule]
-   })
-   export class AppRoutingModule { }
