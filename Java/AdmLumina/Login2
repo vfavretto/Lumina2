@@ -1,0 +1,15 @@
+ant -f "C:\\Users\\sooar\\OneDrive\\Área de Trabalho\\DSM\\Fatec02\\Lumina2\\Java\\AdmLumina" -Dnb.internal.action.name=run.single -Djavac.includes=lumina/View/Login2.java -Drun.class=lumina.View.Login2 run-single
+init:
+Deleting: C:\Users\sooar\OneDrive\Área de Trabalho\DSM\Fatec02\Lumina2\Java\AdmLumina\build\built-jar.properties
+deps-jar:
+Updating property file: C:\Users\sooar\OneDrive\Área de Trabalho\DSM\Fatec02\Lumina2\Java\AdmLumina\build\built-jar.properties
+Compiling 1 source file to C:\Users\sooar\OneDrive\Área de Trabalho\DSM\Fatec02\Lumina2\Java\AdmLumina\build\classes
+warning: [options] system modules path not set in conjunction with -source 11
+C:\Users\sooar\OneDrive\�rea de Trabalho\DSM\Fatec02\Lumina2\Java\AdmLumina\src\lumina\View\Login2.java:311: error: cannot find symbol
+            JOptionPane.showMessageDialog(this, "Usu�rio ou senha incorretos");
+            ^
+  symbol:   variable JOptionPane
+  location: class Login2
+1 error
+1 warning
+BUILD FAILED (total time: 2 seconds)
